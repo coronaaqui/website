@@ -10,14 +10,17 @@
   },
   "dependencies": {
     "antd": "^4.0.3",
+    "calango": "^1.1.0",
     "next": "9.3.1",
     "polished": "^3.5.0",
     "rc-select": "^10.1.6",
     "react": "16.13.0",
     "react-dom": "16.13.0",
+    "react-svg": "^11.0.15",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.2.0",
     "babel-plugin-styled-components": "^1.10.7"
   }
 }

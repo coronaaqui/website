@@ -36,8 +36,23 @@ const colors = {
   }
 };
 
+const semanticColors = {
+  success: {
+    default: colors.green.default
+  },
+  warning: {
+    default: colors.yellow.default
+  },
+  danger: {
+    default: colors.orange.default
+  },
+  info: {
+    default: colors.blue.default
+  }
+};
 const shadows = {
-  default: `0px 0px 10px #0000001A`
+  lg: `box-shadow: 0px 0px 10px #0000001A;`,
+  default: `box-shadow: 0px 0px 10px #0000000D;`
 };
 
 const typography = {
@@ -69,13 +84,16 @@ const paddings = {
   md: `30rem`,
 
   containerPadding: `
-    padding-left: 10rem;
-    padding-right: 10rem;
+    padding-left: 18rem;
+    padding-right: 18rem;
   `
 };
 
 const theme = {
-  colors,
+  colors: {
+    ...colors,
+    semantic: semanticColors
+  },
   shadows,
   typography,
   paddings

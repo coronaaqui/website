@@ -1,9 +1,13 @@
 import styled, { css } from 'styled-components';
 
-export const countrySelectWithStyle = component =>
+export const stateSelectWithStyle = component =>
   styled(component)(
     ({ theme }) => css`
+      .ant-select {
+        ${theme.shadows.default}
+      }
       .ant-select-selector {
+        ${theme.shadows.default}
         height: 46px !important;
       }
 
@@ -28,6 +32,10 @@ export const countrySelectWithStyle = component =>
       .ant-select-arrow {
         color: ${theme.colors.primary.default} !important;
         font-weight: bold !important;
+      }
+
+      .ant-select-selection-item figure {
+        float: left;
       }
     `
   );

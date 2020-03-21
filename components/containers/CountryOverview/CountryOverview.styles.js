@@ -5,8 +5,53 @@ export const countryOverviewWithStyle = component =>
   styled(component)(
     ({ theme }) => css`
       display: flex;
-      padding-top: 3rem;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 4rem;
+      ${theme.paddings.containerPadding}
 
+      .indicators {
+        width: 20%;
+
+        .overall-indicator {
+          margin-bottom: 45px;
+        }
+
+        .indicator {
+          margin-bottom: 20px;
+        }
+      }
+
+      .popular-searches {
+        margin-top: 35px;
+
+        .title {
+          color: ${theme.colors.primary.dark};
+          font-weight: 500;
+          margin-bottom: 20px;
+        }
+
+        .list {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .item {
+            width: 130px;
+            margin-bottom: 5px;
+
+            a {
+              float: left;
+              margin-left: 8px;
+              font-weight: 300;
+            }
+          }
+        }
+      }
+
+      .map {
+        width: 35%;
+      }
       .state-selector {
         width: 480px;
 

@@ -11,7 +11,7 @@ export const headerWithStyle = component =>
       height: 60px;
 
       background: #fff;
-      box-shadow: ${theme.shadows.default};
+      ${theme.shadows.lg};
 
       ${theme.paddings.containerPadding}
 

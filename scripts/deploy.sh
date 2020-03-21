@@ -4,4 +4,5 @@
 set -xe
 
 git pull origin master -X theirs
+yarn
 yarn build

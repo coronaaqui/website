@@ -33,6 +33,21 @@ const GlobalStyle = createGlobalStyle(
       outline: 0;
       box-shadow: 0 0 0 2px #1c39361c !important;
     }
+
+    .ant-select-item-option-content {
+      figure {
+        float: left;
+      }
+    }
+
+    a {
+      color: ${theme.colors.black.default} !important;
+
+      &:hover {
+        padding-bottom: 1px;
+        border-bottom: 0.5px solid ${theme.colors.primary.default};
+      }
+    }
   `
 );
 
