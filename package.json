@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "serve": "pm2 start npm --name 'website' -- start -i max"
+    "serve": "pm2 start npm -i max --name 'website' -- start "
   },
   "dependencies": {
     "antd": "^4.0.3",
