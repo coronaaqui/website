@@ -41,6 +41,7 @@ export const countryOverviewWithStyle = component =>
             margin-bottom: 5px;
 
             a {
+              font-size: 14px;
               float: left;
               margin-left: 8px;
               font-weight: 300;

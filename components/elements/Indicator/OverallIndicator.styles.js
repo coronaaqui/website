@@ -8,15 +8,16 @@ export const overallIndicatorWithStyle = component =>
       border: 1px solid ${theme.colors.primary.dark};
       height: 84px;
       align-items: center;
-      padding: 0 18px;
+      padding: 0 0 0 22px;
 
       ${theme.shadows.default}
     `
   );
 
 export const OverallItem = styled.div`
+  width: 45%;
   &:last-child {
-    margin-left: 45px;
+    margin-left: 10%;
   }
 
   .value {

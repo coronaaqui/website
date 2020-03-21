@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle(
 
       &:hover {
         padding-bottom: 1px;
-        border-bottom: 0.5px solid ${theme.colors.primary.default};
+        border-bottom: 1px solid ${theme.colors.primary.default};
       }
     }
   `
