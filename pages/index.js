@@ -4,7 +4,7 @@ import { Reset } from '../components/elements/Reset';
 import { Banner } from '../components/elements/Banner';
 import { Footer } from '../components/elements/Footer';
 import { Header } from '../components/elements/Header';
-import { App } from '../components/containers/App';
+import { CountryOverview } from '../components/containers/CountryOverview';
 
 const Home = () => (
   <div className='container'>
@@ -14,7 +14,8 @@ const Home = () => (
       <link rel='icon' href='/favicon.ico' />
     </Head>
 
-    <App />
+    <Header />
+    <CountryOverview />
   </div>
 );
 

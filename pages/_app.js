@@ -1,5 +1,7 @@
 import React from 'react';
 import { Theme } from '../theme';
+import 'antd/lib/select/style/index.css';
+import 'antd/lib/style/index.css';
 
 const App = ({ Component, pageProps }) => {
   return (

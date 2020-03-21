@@ -6,7 +6,8 @@ const colors = {
   // semantic colors
   primary: {
     default: '#479A90',
-    hover: '#1C3936'
+    hover: '#1C3936',
+    dark: '#1C3936'
   },
   secondary: {
     default: '',
@@ -41,12 +42,14 @@ const shadows = {
 
 const typography = {
   titles: {
-    md: `
+    h1: `
+    font-size: 30px;
+    color: ${colors.primary.default}
+  `,
+    h2: `
       font-size: 24px;
-    `,
-    lg: `
-      font-size: 30px;
-      color: ${colors.primary.default}
+      font-weight: 600;
+      color: ${colors.primary.dark}
     `
   },
   text: {

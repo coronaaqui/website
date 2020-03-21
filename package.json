@@ -9,7 +9,10 @@
     "serve": "next build && pm2 start npm --name 'website' -- start -i max"
   },
   "dependencies": {
+    "antd": "^4.0.3",
     "next": "9.3.1",
+    "polished": "^3.5.0",
+    "rc-select": "^10.1.6",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "styled-components": "^5.0.1"
