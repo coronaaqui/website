@@ -30,7 +30,6 @@ const colors = {
     default: '#CCCCCC',
     scales: ['#F4F4F4', '#CCCCCC', '#BABABA']
   },
-
   black: {
     default: '#000000'
   }
@@ -62,10 +61,21 @@ const typography = {
   }
 };
 
+const paddings = {
+  base: `1rem`,
+  md: `30rem`,
+
+  containerPadding: `
+    padding-left: 10rem;
+    padding-right: 10rem;
+  `
+};
+
 const theme = {
   colors,
   shadows,
-  typography
+  typography,
+  paddings
 };
 
 export const Theme = ({ children }) => {

@@ -1,23 +1,21 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import { Reset } from '../components/Reset'
-import { Banner } from '../components/Banner'
-import { Footer } from '../components/Footer'
+import { Reset } from '../components/elements/Reset';
+import { Banner } from '../components/elements/Banner';
+import { Footer } from '../components/elements/Footer';
+import { Header } from '../components/elements/Header';
+import { App } from '../components/containers/App';
 
 const Home = () => (
-  <div className="container">
+  <div className='container'>
     <Reset />
     <Head>
       <title>Corona aqui</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel='icon' href='/favicon.ico' />
     </Head>
 
-    <main>
-      <Banner />
-    </main>
-
-    <Footer />
+    <App />
   </div>
-)
+);
 
-export default Home
+export default Home;
