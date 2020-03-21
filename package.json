@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "serve": "next build && pm2 start npm --name 'next' -- start -i max"
+    "serve": "next build && pm2 start npm --name 'website' -- start -i max"
   },
   "dependencies": {
     "next": "9.3.1",
