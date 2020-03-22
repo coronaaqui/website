@@ -17,6 +17,9 @@ const Title = {
 const Text = styled.p`
   line-height: 1.5rem;
   ${({ size = 'md', theme }) => theme.typography.text?.[size]}
+  ${({ type, theme }) =>
+    type === 'info' ? `color: ${theme.colors.grey.scales[2]};` : ``}
+  ${({ align = 'left' }) => `text-align: ${align};`}
 `;
 
 const getDotStyle = (type, theme) =>

@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle(
       font-family: 'Mukta', sans-serif !important;
     }
 
+    p,
+    a {
+      ${theme.typography.text.md}
+    }
+
     .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
       background-color: #f5f5f5;
     }

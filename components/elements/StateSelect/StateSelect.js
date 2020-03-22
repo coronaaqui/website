@@ -13,7 +13,7 @@ const StateSelect = ({ className }) => {
         {Object.keys(statesByRegion).map(region => (
           <OptGroup label={region}>
             {statesByRegion[region].map(state => (
-              <Option value={state.initial}>
+              <Option value={state.name}>
                 <Flag state={state.initial} />
                 {state.name}
               </Option>

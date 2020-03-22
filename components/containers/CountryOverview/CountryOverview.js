@@ -9,6 +9,7 @@ import { popularStates } from '../../../resources/states';
 import Flag from '../../elements/Flag/Flag';
 import { Indicator } from '../../elements/Indicator';
 import { OverallIndicator } from '../../elements/Indicator/index';
+import moment from 'moment';
 
 const CountryOverview = ({ className, cases }) => {
   return (
@@ -47,6 +48,12 @@ const CountryOverview = ({ className, cases }) => {
           label='Fatalidades'
           value={cases?.deaths?.value}
         />
+        <Text type='info' align='center'>
+          Última atualização ás{' '}
+          {cases.lastUpdate
+            ? moment(cases.lastUpdate).format('hh:mm - DD/MM/YYYY')
+            : '-'}
+        </Text>
       </div>
       <figure className='map'>
         <MapSvg />
