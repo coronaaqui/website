@@ -14,26 +14,57 @@ const styles = ({ theme }) => css`
 
   .events-overview__container {
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 80px;
   }
 
   .events-overview__item {
-    .&--description {
-      article {
-        width: 80%;
-      
-        h2 {
-          width: 100%;
-          float: left;
+    margin: 0 0 20px;
+    
+    .ant-timeline {
+      margin: 10px 0 0 108px; 
+      float: left;
+
+      .ant-timeline-item-content {
+        .label {
+          font-weight: 700;
+          margin-right: 5px;
         }
-  
+
         ${Text} {
-          width: 100%;
-          float: left;
+          font-size: 14px;
         }
       }
     }
+  }
 
-    
+  .events-overview__item--description {
+    figure {
+      width: 80px;
+      float: left;
+      margin: 0 14px;
+
+      img {
+        width: 80px;
+      }
+    }
+
+    article {
+      h2 {
+        font-size: 20px;
+        color: ${theme.colors.primary.dark};
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+  
+      ${Text} {
+        width: 40vw;
+        overflow-wrap: normal;
+        max-width: 650px;
+        margin-bottom: 10px;
+      }
+    }
   }
 `;
 

@@ -19,14 +19,21 @@ const CountryOverview = ({ className, cases }) => {
             {
               label: 'Infectados',
               value: cases?.confirmed?.value,
-              arrow: { direction: 'up', type: 'danger' }
+              arrow: {
+                direction:
+                  cases?.confirmed?.value > cases?.confirmed?.previousValue
+                    ? 'up'
+                    : 'down'
+              }
             },
             {
               label: 'Curados',
               value: cases?.recovered?.value,
               arrow: {
-                direction: 'down',
-                type: 'warning'
+                direction:
+                  cases?.recovered?.value > cases?.recovered?.previousValue
+                    ? 'up'
+                    : 'down'
               }
             }
           ]}

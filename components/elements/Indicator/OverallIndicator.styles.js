@@ -33,8 +33,7 @@ export const OverallItem = styled.div`
 
     .anticon {
       font-size: 20px;
-      color: ${({ theme, arrow }) =>
-        theme.colors.semantic?.[arrow.type].default};
+      color: ${({ theme }) => theme.colors.primary.dark};
     }
   }
 
