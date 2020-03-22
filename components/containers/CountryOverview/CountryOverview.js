@@ -56,9 +56,9 @@ const CountryOverview = ({ className, cases }) => {
           value={cases?.deaths?.value}
         />
         <Text type='info' align='center'>
-          Última atualização ás{' '}
+          Última atualização às{' '}
           {cases.lastUpdate
-            ? moment(cases.lastUpdate).format('hh:mm - DD/MM/YYYY')
+            ? moment(cases.lastUpdate).format('HH:mm - DD/MM/YYYY')
             : '-'}
         </Text>
       </div>

@@ -9,7 +9,7 @@ export const logoWithStyle = component =>
       font-weight: 600;
 
       strong {
-        font-weight: bolder;
+        font-weight: 400;
         color: ${theme.colors.primary.default};
       }
     `
