@@ -84,8 +84,8 @@ const paddings = {
   md: `30rem`,
 
   containerPadding: `
-    padding-left: 18rem;
-    padding-right: 18rem;
+    padding-left: 20px;
+    padding-right: 20px;
   `
 };
 

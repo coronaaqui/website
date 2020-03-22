@@ -1,15 +1,14 @@
+import moment from 'moment';
 import React from 'react';
-import { countryOverviewWithStyle } from './CountryOverview.styles';
-import { Title, Text } from '../../elements/Typography';
-import { Dot } from '../../elements/Typography/Typography';
-import { StateSelect } from '../../elements/StateSelect';
 import { MapSvg } from '../../../resources/map';
-import List from 'antd/lib/list';
 import { popularStates } from '../../../resources/states';
 import Flag from '../../elements/Flag/Flag';
 import { Indicator } from '../../elements/Indicator';
 import { OverallIndicator } from '../../elements/Indicator/index';
-import moment from 'moment';
+import { StateSelect } from '../../elements/StateSelect';
+import { Text, Title } from '../../elements/Typography';
+import { Dot } from '../../elements/Typography/Typography';
+import { countryOverviewWithStyle } from './CountryOverview.styles';
 
 const CountryOverview = ({ className, cases }) => {
   return (
@@ -35,13 +34,14 @@ const CountryOverview = ({ className, cases }) => {
         <Indicator
           type='success'
           label='Curados'
-          value={cases?.confirmed?.value}
+          value={cases?.recovered?.value}
         />
         <Indicator type='info' label='Suspeitos' value={1530} />
         <Indicator
           type='warning'
           label='Infectados'
-          value={cases?.recovered?.value}
+          value={cases?.confirmed?.value}
+          
         />
         <Indicator
           type='danger'
@@ -55,9 +55,9 @@ const CountryOverview = ({ className, cases }) => {
             : '-'}
         </Text>
       </div>
-      <figure className='map'>
+      <picture className='map'>
         <MapSvg />
-      </figure>
+      </picture>
       <div className='state-selector'>
         <article>
           <Title.h2>
