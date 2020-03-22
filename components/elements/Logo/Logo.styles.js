@@ -6,10 +6,10 @@ export const logoWithStyle = component =>
       font-size: 20px;
       cursor: pointer;
       color: ${theme.colors.primary.dark};
-      font-weight: 600;
+      font-weight: 500;
 
       strong {
-        font-weight: 400;
+        font-weight: 300;
         color: ${theme.colors.primary.default};
       }
     `

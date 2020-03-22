@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router';
 import { countryOverviewWithStyle } from './CountryOverview.styles';
 import { Title, Text } from '../../elements/Typography';
 import { Dot } from '../../elements/Typography/Typography';
@@ -12,6 +13,10 @@ import { OverallIndicator } from '../../elements/Indicator/index';
 import moment from 'moment';
 
 const CountryOverview = ({ className, cases }) => {
+  const handleStateSelect = value => {
+    Router.push(`/estado/${value.toLowerCase()}`);
+  };
+
   return (
     <section className={'country-overview ' + className}>
       <div className='indicators'>
@@ -78,7 +83,7 @@ const CountryOverview = ({ className, cases }) => {
           </Text>
         </article>
 
-        <StateSelect />
+        <StateSelect onSelect={handleStateSelect} />
 
         <div className='popular-searches'>
           <p className='title'>Estados mais pesquisados:</p>

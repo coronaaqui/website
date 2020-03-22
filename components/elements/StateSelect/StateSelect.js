@@ -6,10 +6,15 @@ import Flag from '../Flag/Flag';
 
 const { Option, OptGroup } = Select;
 
-const StateSelect = ({ className }) => {
+const StateSelect = ({ className, onSelect }) => {
   return (
     <>
-      <Select placeholder='Select um estado' showSearch className={className}>
+      <Select
+        placeholder='Select um estado'
+        className={className}
+        onSelect={onSelect}
+        showSearch
+      >
         {Object.keys(statesByRegion).map(region => (
           <OptGroup key={region} label={region}>
             {statesByRegion[region].map(state => (
