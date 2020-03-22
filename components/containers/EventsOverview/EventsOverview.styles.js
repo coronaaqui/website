@@ -2,16 +2,10 @@ import styled, { css } from 'styled-components';
 import { Text } from '../../elements/Typography';
 
 const styles = ({ theme }) => css`
-  
-  width: 100%;
   background: ${theme.colors.grey.scales[0]};
   ${theme.paddings.containerPaddingTop}
   ${theme.paddings.containerPadding}
-  display: block;
-
-  ${Text} {
-    width: 100%;
-  }
+ 
   .events-content{
     display: block;
     ${theme.container}

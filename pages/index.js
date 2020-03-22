@@ -1,12 +1,11 @@
+import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
-import React, { useState, useEffect } from 'react';
-import { Reset } from '../components/elements/Reset';
-import { Banner } from '../components/elements/Banner';
+import React, { useEffect, useState } from 'react';
+import { CountryOverview } from '../components/containers/CountryOverview';
+import { EventsOverview } from '../components/containers/EventsOverview';
 import { Footer } from '../components/elements/Footer';
 import { Header } from '../components/elements/Header';
-import { CountryOverview } from '../components/containers/CountryOverview';
-import fetch from 'isomorphic-unfetch';
-import { EventsOverview } from '../components/containers/EventsOverview';
+import { Reset } from '../components/elements/Reset';
 
 function useCases() {
   const [cases, setCases] = useState({});
@@ -42,6 +41,7 @@ const Home = () => {
       <Header />
       <CountryOverview cases={cases} />
       <EventsOverview />
+      <Footer/>
     </div>
   );
 };

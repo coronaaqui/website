@@ -12,5 +12,8 @@ export const logoWithStyle = component =>
         font-weight: 400;
         color: ${theme.colors.primary.default};
       }
+      &.inverted{
+        color: ${theme.colors.grey.scales[0]};
+      }
     `
   );

@@ -3,14 +3,27 @@ import styled, { css } from 'styled-components';
 const style = ({ size = 'md', type = 'primary', theme }) => {
   const colors = {
     primary: `
-        color: ${theme.colors.primary.default};
-        border: 1px solid ${theme.colors.primary.default};
+        border:none;
         border-radius: 2px;
         transition: .3s all;
-
+        background-color:${theme.colors.primary.default};
+        color: ${theme.colors.grey.scales[0]};
         &:hover {
-          color: ${theme.colors.primary.hover};
-          border-color: ${theme.colors.primary.hover};
+          background-color: ${theme.colors.primary.hover};
+        }
+        &.inverted{
+          color: ${theme.colors.primary.default};
+          border-color: ${theme.colors.grey.scales[0]};
+          background-color:${theme.colors.grey.scales[0]};
+        }
+        &.outline{
+          color: ${theme.colors.primary.default};
+          border: 1px solid ${theme.colors.primary.default};
+          &.inverted{
+            color: ${theme.colors.grey.scales[0]};
+            border-color: ${theme.colors.grey.scales[0]};
+            background-color:transparent;
+          }
         }
       `
   };
