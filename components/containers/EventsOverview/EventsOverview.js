@@ -33,17 +33,23 @@ const EventsOverview = ({ className }) => {
               </Text>
             </article>
           </div>
+
           <Timeline>
-            <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
             <Timeline.Item>
-              Solve initial network problems 2015-09-01
+              <p>
+                <span className='label'>5 estados -</span> Acesso limitado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
             </Timeline.Item>
-            <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
             <Timeline.Item>
-              Network problems being solved 2015-09-01
+              <p>
+                <span className='label'>2 estados -</span> Acesso interditado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
             </Timeline.Item>
           </Timeline>
         </div>
+
         <div className='events-overview__item'>
           <div className='events-overview__item--description'>
             <figure>
@@ -59,13 +65,77 @@ const EventsOverview = ({ className }) => {
           </div>
 
           <Timeline>
-            <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
             <Timeline.Item>
-              Solve initial network problems 2015-09-01
+              <p>
+                <span className='label'>5 estados -</span> Acesso limitado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
             </Timeline.Item>
-            <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
             <Timeline.Item>
-              Network problems being solved 2015-09-01
+              <p>
+                <span className='label'>2 estados -</span> Acesso interditado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
+            </Timeline.Item>
+          </Timeline>
+        </div>
+
+        <div className='events-overview__item'>
+          <div className='events-overview__item--description'>
+            <figure>
+              <img width='60px' src='/static/airport.svg' />
+            </figure>
+            <article>
+              <h2>Aeroportos</h2>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Maecenas eget justo ligula. Class aptent taciti s
+              </Text>
+            </article>
+          </div>
+
+          <Timeline>
+            <Timeline.Item>
+              <p>
+                <span className='label'>5 estados -</span> Acesso limitado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
+            </Timeline.Item>
+            <Timeline.Item>
+              <p>
+                <span className='label'>2 estados -</span> Acesso interditado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
+            </Timeline.Item>
+          </Timeline>
+        </div>
+
+        <div className='events-overview__item'>
+          <div className='events-overview__item--description'>
+            <figure>
+              <img width='60px' src='/static/airport.svg' />
+            </figure>
+            <article>
+              <h2>Aeroportos</h2>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Maecenas eget justo ligula. Class aptent taciti s
+              </Text>
+            </article>
+          </div>
+
+          <Timeline>
+            <Timeline.Item>
+              <p>
+                <span className='label'>5 estados -</span> Acesso limitado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
+            </Timeline.Item>
+            <Timeline.Item>
+              <p>
+                <span className='label'>2 estados -</span> Acesso interditado
+              </p>
+              <Text type='info'>Última atualização às 22:00 - 20/03/2020</Text>
             </Timeline.Item>
           </Timeline>
         </div>

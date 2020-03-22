@@ -115,13 +115,13 @@ const paddings = {
     }
    
     @media only screen and ${device.laptopL} {
-      padding-left: 10vw;
-      padding-right: 10vw;
+      padding-left: 12vw;
+      padding-right: 12vw;
     }
   `,
 
   containerPaddingTop: `
-    padding: 4rem;
+    padding: 5rem;
   `
 };
 

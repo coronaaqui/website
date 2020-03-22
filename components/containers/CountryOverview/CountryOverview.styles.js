@@ -11,7 +11,7 @@ export const countryOverviewWithStyle = component =>
       ${theme.paddings.containerPadding}
 
       .indicators {
-        max-width: 220px;
+        width: 220px;
         .overall-indicator {
           margin-bottom: 45px;
         }
