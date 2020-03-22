@@ -18,7 +18,11 @@ const OverallIndicator = ({ className, metrics }) => {
     <div className={'overall-indicator ' + className}>
       {metrics.map(
         ({ label, value, arrow = { direction: 'up', type: 'success ' } }) => (
-          <OverallItem arrow={arrow} className='overall-indicator__item'>
+          <OverallItem
+            key={JSON.stringify({ label, value })}
+            arrow={arrow}
+            className='overall-indicator__item'
+          >
             <p className='value'>
               {format(value)}{' '}
               {arrow.direction === 'up' ? (

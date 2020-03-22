@@ -7,7 +7,8 @@ export const countryOverviewWithStyle = component =>
       /* display: flex;
       flex-direction: row;
       justify-content: space-between; */
-      padding-top: 4rem;
+      justify-content: space-between;
+      ${theme.paddings.containerPaddingTop}
       ${theme.paddings.containerPadding}
       display:grid;
       grid-template-columns: 220px auto 480px;

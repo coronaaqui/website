@@ -2,6 +2,27 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './GlobalStyle';
 
+const size = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+};
+
+export const device = {
+  mobileS: `(min-width: ${size.mobileS})`,
+  mobileM: `(min-width: ${size.mobileM})`,
+  mobileL: `(min-width: ${size.mobileL})`,
+  tablet: `(min-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.laptop})`,
+  laptopL: `(min-width: ${size.laptopL})`,
+  desktop: `(min-width: ${size.desktop})`,
+  desktopL: `(min-width: ${size.desktop})`
+};
+
 const colors = {
   // semantic colors
   primary: {
@@ -29,7 +50,7 @@ const colors = {
   },
   grey: {
     default: '#CCCCCC',
-    scales: ['#F4F4F4', '#CCCCCC', '#BABABA']
+    scales: ['#FCFCFC', '#F4F4F4', '#CCCCCC', '#BABABA']
   },
   black: {
     default: '#000000'
@@ -59,7 +80,8 @@ const typography = {
   titles: {
     h1: `
     font-size: 30px;
-    color: ${colors.primary.default}
+    color: ${colors.primary.default};
+    font-weight: 500;
   `,
     h2: `
       font-size: 24px;
@@ -71,7 +93,7 @@ const typography = {
     sm: `
       font-size: 12px;`,
     md: `
-      font-size: 14px;
+      font-size: 15px;
     `,
     lg: `
       font-size: 16px;
@@ -86,6 +108,10 @@ const paddings = {
   containerPadding: `
     padding-left: 20px;
     padding-right: 20px;
+  `,
+
+  containerPaddingTop: `
+    padding: 4rem;
   `
 };
 

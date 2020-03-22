@@ -5,9 +5,12 @@ export const logoWithStyle = component =>
     ({ theme }) => css`
       font-size: 20px;
       cursor: pointer;
+      color: ${theme.colors.primary.dark};
+      font-weight: 600;
 
       strong {
         font-weight: bolder;
+        color: ${theme.colors.primary.default};
       }
     `
   );
