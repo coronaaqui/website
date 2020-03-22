@@ -127,7 +127,11 @@ const paddings = {
   // }
 
   containerPaddingTop: `
-    padding: 5rem;
+    padding: 2rem;
+
+    @media only screen and ${device.tablet}{
+      padding: 5rem;
+    }
   `
 };
 

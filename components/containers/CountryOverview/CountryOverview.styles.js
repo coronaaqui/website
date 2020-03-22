@@ -101,6 +101,10 @@ ${theme.container}
 
 .map {
   text-align: center;
+  display: none;
+  @media only screen and ${theme.device.tablet} {
+    display:initial;
+  }
   svg{
     max-width:100%;
   }
