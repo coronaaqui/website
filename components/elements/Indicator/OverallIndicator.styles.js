@@ -4,7 +4,7 @@ export const overallIndicatorWithStyle = component =>
   styled(component)(
     ({ type = 'success', theme }) => css`
       display: flex;
-      width: 220px;
+
       border: 1px solid ${theme.colors.primary.dark};
       height: 84px;
       align-items: center;

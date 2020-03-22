@@ -51,6 +51,11 @@ const GlobalStyle = createGlobalStyle(
         border-bottom: 1px solid ${theme.colors.primary.default};
       }
     }
+
+    .ant-timeline-item-head-blue {
+      color: ${theme.colors.primary.default} !important;
+      border-color: ${theme.colors.primary.default} !important;
+    }
   `
 );
 

@@ -76,8 +76,8 @@ const CountryOverview = ({ className, cases }) => {
         <div className='popular-searches'>
           <p className='title'>Estados mais pesquisados:</p>
           <div className='list'>
-            {popularStates.map(item => (
-              <div className='item'>
+            {popularStates.map((item, idx) => (
+              <div key={item.initial + idx} className='item'>
                 <Flag state={item.initial} /> <a>{item.name}</a>
               </div>
             ))}

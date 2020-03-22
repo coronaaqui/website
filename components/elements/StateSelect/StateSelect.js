@@ -1,7 +1,7 @@
 import React from 'react';
 import { stateSelectWithStyle } from './StateSelect.styles';
 import Select from 'antd/lib/select';
-import { statesByRegion, states } from '../../../resources/states';
+import { statesByRegion } from '../../../resources/states';
 import Flag from '../Flag/Flag';
 
 const { Option, OptGroup } = Select;
@@ -11,9 +11,9 @@ const StateSelect = ({ className }) => {
     <>
       <Select placeholder='Select um estado' showSearch className={className}>
         {Object.keys(statesByRegion).map(region => (
-          <OptGroup label={region}>
+          <OptGroup key={region} label={region}>
             {statesByRegion[region].map(state => (
-              <Option value={state.name}>
+              <Option key={JSON.stringify(state)} value={state.name}>
                 <Flag state={state.initial} />
                 {state.name}
               </Option>

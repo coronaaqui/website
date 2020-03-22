@@ -7,10 +7,11 @@ export const countryOverviewWithStyle = component =>
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding-top: 4rem;
+      ${theme.paddings.containerPaddingTop}
       ${theme.paddings.containerPadding}
 
       .indicators {
+        max-width: 220px;
         .overall-indicator {
           margin-bottom: 45px;
         }
@@ -50,6 +51,12 @@ export const countryOverviewWithStyle = component =>
 
       .map {
         width: 35%;
+
+        svg {
+          margin: 0 auto;
+          display: block;
+          width: 384px;
+        }
       }
       .state-selector {
         width: 480px;

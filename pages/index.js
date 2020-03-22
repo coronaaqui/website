@@ -6,6 +6,7 @@ import { Footer } from '../components/elements/Footer';
 import { Header } from '../components/elements/Header';
 import { CountryOverview } from '../components/containers/CountryOverview';
 import fetch from 'isomorphic-unfetch';
+import { EventsOverview } from '../components/containers/EventsOverview';
 
 function useCases() {
   const [cases, setCases] = useState({});
@@ -40,6 +41,7 @@ const Home = () => {
 
       <Header />
       <CountryOverview cases={cases} />
+      <EventsOverview />
     </div>
   );
 };
