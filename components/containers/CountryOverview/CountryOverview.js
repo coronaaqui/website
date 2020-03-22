@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React from 'react';
+import Router from 'next/router';
 import { MapSvg } from '../../../resources/map';
 import { popularStates } from '../../../resources/states';
 import Flag from '../../elements/Flag/Flag';
@@ -11,6 +12,10 @@ import { Dot } from '../../elements/Typography/Typography';
 import { countryOverviewWithStyle } from './CountryOverview.styles';
 
 const CountryOverview = ({ className, cases }) => {
+  const handleStateSelect = value => {
+    Router.push(`/estado/${value.toLowerCase()}`);
+  };
+
   return (
     <section className={'country-overview ' + className}>
       <div className='indicators'>
@@ -48,7 +53,6 @@ const CountryOverview = ({ className, cases }) => {
           type='warning'
           label='Infectados'
           value={cases?.confirmed?.value}
-          
         />
         <Indicator
           type='danger'
@@ -78,7 +82,7 @@ const CountryOverview = ({ className, cases }) => {
           </Text>
         </article>
 
-        <StateSelect />
+        <StateSelect onSelect={handleStateSelect} />
 
         <div className='popular-searches'>
           <p className='title'>Estados mais pesquisados:</p>
