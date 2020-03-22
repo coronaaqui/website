@@ -24,7 +24,11 @@ export const device = {
   desktop: `(min-width: ${size.desktop})`,
   desktopL: `(min-width: ${size.desktop})`
 };
-
+const container =`
+  margin: 0 auto;
+  width: 1180px;
+  max-width:100%;
+`
 const colors = {
   // semantic colors
   primary: {
@@ -135,7 +139,8 @@ const theme = {
   shadows,
   typography,
   paddings, 
-  device
+  device,
+  container
 };
 
 export const Theme = ({ children }) => {

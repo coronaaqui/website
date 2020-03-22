@@ -1,11 +1,12 @@
-import React from 'react';
-import { eventsOverviewWithStyle } from './EventsOverview.styles';
-import { Title, Text, Dot } from '../../elements/Typography';
 import { Timeline } from 'antd';
+import React from 'react';
+import { Dot, Text, Title } from '../../elements/Typography';
+import { eventsOverviewWithStyle } from './EventsOverview.styles';
 
 const EventsOverview = ({ className }) => {
   return (
-    <div className={'events-overview ' + className}>
+    <section className={'events-overview ' + className}>
+      <div className="events-content">
       <Title.h1>
         Acontecimentos por região
         <Dot type='dark' size='34px' />{' '}
@@ -23,15 +24,17 @@ const EventsOverview = ({ className }) => {
         <div className='events-overview__item'>
           <div className='events-overview__item--description'>
             <figure>
-              <img width='60px' src='/static/airport.svg' />
+              <picture>
+                <img src='/static/airport.svg' />
+              </picture>
+              <figcaption>
+                <h2>Aeroportos</h2>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Maecenas eget justo ligula. Class aptent taciti s
+                </Text>
+              </figcaption>
             </figure>
-            <article>
-              <h2>Aeroportos</h2>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas eget justo ligula. Class aptent taciti s
-              </Text>
-            </article>
           </div>
 
           <Timeline>
@@ -49,19 +52,20 @@ const EventsOverview = ({ className }) => {
             </Timeline.Item>
           </Timeline>
         </div>
-
         <div className='events-overview__item'>
           <div className='events-overview__item--description'>
             <figure>
-              <img width='60px' src='/static/airport.svg' />
+              <picture>
+                <img src='/static/airport.svg' />
+              </picture>
+              <figcaption>
+                <h2>Aeroportos</h2>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Maecenas eget justo ligula. Class aptent taciti s
+                </Text>
+              </figcaption>
             </figure>
-            <article>
-              <h2>Aeroportos</h2>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas eget justo ligula. Class aptent taciti s
-              </Text>
-            </article>
           </div>
 
           <Timeline>
@@ -79,19 +83,20 @@ const EventsOverview = ({ className }) => {
             </Timeline.Item>
           </Timeline>
         </div>
-
         <div className='events-overview__item'>
           <div className='events-overview__item--description'>
             <figure>
-              <img width='60px' src='/static/airport.svg' />
+              <picture>
+                <img src='/static/airport.svg' />
+              </picture>
+              <figcaption>
+                <h2>Aeroportos</h2>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Maecenas eget justo ligula. Class aptent taciti s
+                </Text>
+              </figcaption>
             </figure>
-            <article>
-              <h2>Aeroportos</h2>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas eget justo ligula. Class aptent taciti s
-              </Text>
-            </article>
           </div>
 
           <Timeline>
@@ -109,19 +114,20 @@ const EventsOverview = ({ className }) => {
             </Timeline.Item>
           </Timeline>
         </div>
-
         <div className='events-overview__item'>
           <div className='events-overview__item--description'>
             <figure>
-              <img width='60px' src='/static/airport.svg' />
+              <picture>
+                <img src='/static/airport.svg' />
+              </picture>
+              <figcaption>
+                <h2>Aeroportos</h2>
+                <Text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Maecenas eget justo ligula. Class aptent taciti s
+                </Text>
+              </figcaption>
             </figure>
-            <article>
-              <h2>Aeroportos</h2>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas eget justo ligula. Class aptent taciti s
-              </Text>
-            </article>
           </div>
 
           <Timeline>
@@ -140,7 +146,8 @@ const EventsOverview = ({ className }) => {
           </Timeline>
         </div>
       </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

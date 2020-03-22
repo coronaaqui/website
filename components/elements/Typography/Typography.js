@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 
 const h1 = styled.h1`
-  height: 50px;
+  /* height: 50px; */
+  margin-bottom: 15px;
   ${({ theme }) => theme.typography.titles.h1}
 `;
 
@@ -39,3 +40,4 @@ const Dot = styled(({ children, size, ...props }) => (
 );
 
 export { Title, Text, Dot };
+

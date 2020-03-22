@@ -11,10 +11,8 @@ export const countryOverviewWithStyle = component =>
       ${theme.paddings.containerPadding}
       display:grid;
       gap:15px;
-      margin: 0 auto;
-      width: 1180px;
-      max-width:100%;
       grid-template-columns: 1fr;
+      ${theme.container}
       @media only screen and ${theme.device.tablet} {
         grid-template-columns: auto 480px;
       }
@@ -26,7 +24,6 @@ export const countryOverviewWithStyle = component =>
       .indicators {
         display:grid;
         gap:15px;
-        grid-template-columns:1fr;
         grid-column:span 1;
         @media only screen and ${theme.device.tablet}{
           grid-column:span 2;
