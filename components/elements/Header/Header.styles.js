@@ -12,16 +12,13 @@ export const headerWithStyle = component =>
         order: 1;
       }
 
-      .header-container{
-      ${theme.paddings.containerPadding}
-        margin: 0 auto;
-        width: 1180px;
-        max-width:100%;
+      .header-container {
+        ${theme.paddings.containerPadding}
+        ${theme.container}
         display: flex;
         flex-direction: row;
         height: 60px;
         align-items: center;
-
       }
 
       .cta-section {

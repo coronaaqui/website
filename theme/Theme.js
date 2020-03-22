@@ -24,11 +24,11 @@ export const device = {
   desktop: `(min-width: ${size.desktop})`,
   desktopL: `(min-width: ${size.desktop})`
 };
-const container =`
+const container = `
   margin: 0 auto;
-  width: 1180px;
+  width: 1310px;
   max-width:100%;
-`
+`;
 const colors = {
   // semantic colors
   primary: {
@@ -113,18 +113,18 @@ const paddings = {
     padding-left: 20px;
     padding-right: 20px;
     `,
-    // padding-left: 5vw;
-    // padding-right: 5vw;
+  // padding-left: 5vw;
+  // padding-right: 5vw;
 
-    // @media only screen and ${device.laptop} {
-    //   padding-left: 8vw;
-    //   padding-right: 8vw;
-    // }
-   
-    // @media only screen and ${device.laptopL} {
-    //   padding-left: 12vw;
-    //   padding-right: 12vw;
-    // }
+  // @media only screen and ${device.laptop} {
+  //   padding-left: 8vw;
+  //   padding-right: 8vw;
+  // }
+
+  // @media only screen and ${device.laptopL} {
+  //   padding-left: 12vw;
+  //   padding-right: 12vw;
+  // }
 
   containerPaddingTop: `
     padding: 5rem;
@@ -138,7 +138,7 @@ const theme = {
   },
   shadows,
   typography,
-  paddings, 
+  paddings,
   device,
   container
 };
