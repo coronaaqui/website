@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+
 // Import styled components ServerStyleSheet
 import { ServerStyleSheet } from 'styled-components';
 import { Reset } from '../components/elements/Reset';
@@ -23,7 +24,13 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html>
-        <Head>{this.props.styleTags}</Head>
+        <Head>
+          <link
+            href='https://fonts.googleapis.com/css?family=Mukta:300,400,500,700&display=swap'
+            rel='stylesheet'
+          />
+          {this.props.styleTags}
+        </Head>
         <body>
           <Main />
           <NextScript />
