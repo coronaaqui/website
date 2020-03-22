@@ -4,7 +4,7 @@ export const overallIndicatorWithStyle = component =>
   styled(component)(
     ({ type = 'success', theme }) => css`
       display: flex;
-      width: 14rem;
+      width: 220px;
       border: 1px solid ${theme.colors.primary.dark};
       height: 84px;
       align-items: center;
@@ -15,14 +15,16 @@ export const overallIndicatorWithStyle = component =>
   );
 
 export const OverallItem = styled.div`
-  width: 45%;
+  width: 55%;
+
   &:last-child {
+    width: 45%;
     margin-left: 10%;
   }
 
   .value {
-    font-size: 30px;
-    font-weight: 300;
+    font-size: 24px;
+    font-weight: 700;
     letter-spacing: 1.8px;
     margin-bottom: 10px;
     color: ${({ theme }) => theme.colors.primary.dark};

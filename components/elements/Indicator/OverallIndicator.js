@@ -11,6 +11,7 @@ import {
   ArrowUpOutlined,
   ArrowDownOutlined
 } from '@ant-design/icons';
+import { format } from './helpers/format';
 
 const OverallIndicator = ({ className, metrics }) => {
   return (
@@ -19,7 +20,7 @@ const OverallIndicator = ({ className, metrics }) => {
         ({ label, value, arrow = { direction: 'up', type: 'success ' } }) => (
           <OverallItem arrow={arrow} className='overall-indicator__item'>
             <p className='value'>
-              {value}{' '}
+              {format(value)}{' '}
               {arrow.direction === 'up' ? (
                 <ArrowUpOutlined />
               ) : (

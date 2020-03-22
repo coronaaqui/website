@@ -1,11 +1,7 @@
 import React from 'react';
 import { indicatorWithStyle } from './Indicator.styles';
+import { format } from './helpers/format';
 
-function format(number) {
-  return new Intl.NumberFormat('pt-BR', { maximumSignificantDigits: 3 }).format(
-    number
-  );
-}
 const Indicator = ({ className, label, value }) => {
   return (
     <div className={'indicator ' + className}>

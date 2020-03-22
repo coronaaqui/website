@@ -10,11 +10,7 @@ import Flag from '../../elements/Flag/Flag';
 import { Indicator } from '../../elements/Indicator';
 import { OverallIndicator } from '../../elements/Indicator/index';
 
-const CountryOverview = ({ className }) => {
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
-
+const CountryOverview = ({ className, cases }) => {
   return (
     <section className={'country-overview ' + className}>
       <div className='indicators'>
@@ -22,12 +18,12 @@ const CountryOverview = ({ className }) => {
           metrics={[
             {
               label: 'Infectados',
-              value: 100,
+              value: cases?.confirmed?.value,
               arrow: { direction: 'up', type: 'danger' }
             },
             {
               label: 'Curados',
-              value: 50,
+              value: cases?.recovered?.value,
               arrow: {
                 direction: 'down',
                 type: 'warning'
@@ -35,10 +31,22 @@ const CountryOverview = ({ className }) => {
             }
           ]}
         ></OverallIndicator>
-        <Indicator type='success' label='Curados' value={50} />
+        <Indicator
+          type='success'
+          label='Curados'
+          value={cases?.confirmed?.value}
+        />
         <Indicator type='info' label='Suspeitos' value={1530} />
-        <Indicator type='warning' label='Infectados' value={532} />
-        <Indicator type='danger' label='Fatalidades' value={3} />
+        <Indicator
+          type='warning'
+          label='Infectados'
+          value={cases?.recovered?.value}
+        />
+        <Indicator
+          type='danger'
+          label='Fatalidades'
+          value={cases?.deaths?.value}
+        />
       </div>
       <figure className='map'>
         <MapSvg />
