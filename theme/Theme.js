@@ -26,7 +26,7 @@ export const device = {
 };
 const container = `
   margin: 0 auto;
-  width: 1310px;
+  width: 1380px;
   max-width:100%;
 `;
 const colors = {
@@ -110,8 +110,7 @@ const paddings = {
   md: `30rem`,
 
   containerPadding: `
-    padding-left: 20px;
-    padding-right: 20px;
+   
     `,
   // padding-left: 5vw;
   // padding-right: 5vw;

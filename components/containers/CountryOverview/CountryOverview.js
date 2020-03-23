@@ -1,19 +1,36 @@
 import moment from 'moment';
 import React from 'react';
 import Router from 'next/router';
+import Link from 'next/link';
 import { MapSvg } from '../../../resources/map';
-import { popularStates } from '../../../resources/states';
+import { popularRegions } from '../../../resources/regions';
 import Flag from '../../elements/Flag/Flag';
 import { Indicator } from '../../elements/Indicator';
 import { OverallIndicator } from '../../elements/Indicator/index';
-import { StateSelect } from '../../elements/StateSelect';
+import { RegionSelect } from '../../elements/RegionSelect';
 import { Text, Title } from '../../elements/Typography';
 import { Dot } from '../../elements/Typography/Typography';
 import { countryOverviewWithStyle } from './CountryOverview.styles';
 
 const CountryOverview = ({ className, cases }) => {
-  const handleStateSelect = value => {
-    Router.push(`/estado/${value.toLowerCase()}`);
+  const navigate = val => {
+    return Router.push(
+      `/estados?uf=${val.toLowerCase()}`,
+      `/estados/${val.toLowerCase()}`,
+      {
+        shallow: true
+      }
+    );
+  };
+
+  const handleRegionSelect = (_, val) => {
+    const { initial } = JSON.parse(val.key);
+    navigate(initial.toLowerCase());
+  };
+
+  const handleRegionLink = val => ev => {
+    ev.preventDefault()
+    navigate(val);
   };
 
   return (
@@ -69,7 +86,7 @@ const CountryOverview = ({ className, cases }) => {
       <picture className='map'>
         <MapSvg />
       </picture>
-      <div className='state-selector'>
+      <div className='region-selector'>
         <article>
           <Title.h2>
             Pesquise por estado
@@ -82,14 +99,22 @@ const CountryOverview = ({ className, cases }) => {
           </Text>
         </article>
 
-        <StateSelect onSelect={handleStateSelect} />
+        <RegionSelect onSelect={handleRegionSelect} />
 
         <div className='popular-searches'>
           <p className='title'>Estados mais pesquisados:</p>
           <div className='list'>
-            {popularStates.map((item, idx) => (
+            {popularRegions.map((item, idx) => (
               <div key={item.initial + idx} className='item'>
-                <Flag state={item.initial} /> <a>{item.name}</a>
+                <Flag region={item.initial} />{' '}
+                <Link
+                  href={`/estados/${item.initial.toLowerCase()}`}
+                  as={`/estados/${item.initial.toLowerCase()}`}
+                >
+                  <a onClick={handleRegionLink(item.initial)} alt={item.name}>
+                    {item.name}
+                  </a>
+                </Link>
               </div>
             ))}
           </div>

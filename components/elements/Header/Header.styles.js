@@ -15,10 +15,16 @@ export const headerWithStyle = component =>
       .header-container {
         ${theme.paddings.containerPadding}
         ${theme.container}
+       
         display: flex;
         flex-direction: row;
         height: 60px;
         align-items: center;
+        padding: 0 2rem;
+
+        @media only screen and ${theme.device.tablet} {
+          padding: 0 5rem;
+        }
       }
 
       .cta-section {

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
-export const stateSelectWithStyle = component =>
+const selectHeight = `53px !important`;
+export const regionSelectWithStyle = component =>
   styled(component)(
     ({ theme }) => css`
       .ant-select {
@@ -8,11 +9,11 @@ export const stateSelectWithStyle = component =>
       }
       .ant-select-selector {
         ${theme.shadows.default}
-        height: 46px !important;
+        height: ${selectHeight};
       }
 
       .ant-select-selection-item {
-        line-height: 46px !important;
+        line-height: ${selectHeight};
       }
 
       &:hover {
@@ -22,11 +23,11 @@ export const stateSelectWithStyle = component =>
       }
 
       input {
-        height: 46px !important;
+        height: ${selectHeight};
       }
 
       .ant-select-selection-placeholder {
-        line-height: 46px !important;
+        line-height: ${selectHeight};
       }
 
       .ant-select-arrow {

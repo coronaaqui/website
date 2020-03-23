@@ -29,7 +29,7 @@ export function createApplicationStore(reducers, middleware, initialData = {}) {
 export function configureStore() {
   const middlewares = [thunkMiddleware, loggerMiddleware];
 
-  const store = createApplicationStore(rootReducer, middlewares, {}); // We can pass initial data to be laoded into the state here
+  const store = createApplicationStore(rootReducer, middlewares, {}); // We can pass initial data to be laoded into the region here
 
   return store;
 }

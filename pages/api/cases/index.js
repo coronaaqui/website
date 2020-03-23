@@ -1,13 +1,33 @@
 import fetch from 'isomorphic-unfetch';
 
 const API_COUNTRY = 'https://covid19.mathdro.id/api/countries/brazil';
+const API_REGION = 'https://covid19-brazil-api.now.sh/api/report/v1';
 let cached = {
   current: {},
   previous: {}
 };
 
 export default (req, res) => {
-  fetch(API_COUNTRY)
+  const {
+    query: { uf }
+  } = req;
+
+  function filterByRegion(resolve) {
+    return response =>
+      resolve(
+        response.data.filter(
+          item => item.uf.toLowerCase() === uf.toLowerCase()
+        )[0]
+      );
+  }
+
+  if (uf) {
+    return fetch(API_REGION)
+      .then(response => response.json())
+      .then(filterByRegion(res.status(200).json));
+  }
+
+  return fetch(API_COUNTRY)
     .then(res => res.json())
     .then(payload => {
       const response = {

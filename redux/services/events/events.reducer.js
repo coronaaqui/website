@@ -1,5 +1,5 @@
-const initialState = {};
+const initialRegion = {};
 
-export function eventsReducer(state = initialState, action) {
-  return state;
+export function eventsReducer(region = initialRegion, action) {
+  return region;
 }

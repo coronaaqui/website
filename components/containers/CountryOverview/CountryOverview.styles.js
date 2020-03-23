@@ -109,7 +109,7 @@ ${theme.container}
     max-width:100%;
   }
 }
-.state-selector {
+.region-selector {
   /* width: 480px; */
 
   article {
