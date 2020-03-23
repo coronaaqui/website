@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle(
       background-color: #e7f3f1 !important;
     }
     .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
-      .ant-select-item-option-state {
+      .ant-select-item-option-region {
       color: ${theme.colors.primary.default} !important;
     }
 
@@ -47,8 +47,7 @@ const GlobalStyle = createGlobalStyle(
       color: ${theme.colors.black.default} !important;
 
       &:hover {
-        padding-bottom: 1px;
-        border-bottom: 1px solid ${theme.colors.primary.default};
+        opacity: 0.8;
       }
     }
 

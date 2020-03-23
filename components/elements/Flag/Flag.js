@@ -1,10 +1,10 @@
 import React from 'react';
 import { flagWithStyle } from './Flag.styles';
 
-const Flag = ({ state = 'BA', className }) => {
+const Flag = ({ region = 'BA', className }) => {
   return (
-    <figure className={'flag ' + className} alt={state}>
-      <img width='23px' src={`/static/flags/${state}.svg`} />
+    <figure className={'flag ' + className} alt={region}>
+      <img width='23px' src={`/static/flags/${region}.svg`} />
     </figure>
   );
 };

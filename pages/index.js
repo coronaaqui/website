@@ -8,11 +8,6 @@ import { CountryOverview } from '../components/containers/CountryOverview';
 import fetch from 'isomorphic-unfetch';
 import { EventsOverview } from '../components/containers/EventsOverview';
 
-function useCases() {
-  const [cases, setCases] = useState({});
-
-  return;
-}
 const Home = () => {
   const [cases, setCases] = useState({});
 
@@ -35,7 +30,7 @@ const Home = () => {
     <div className='container'>
       <Reset />
       <Head>
-        <title>Corona aqui</title>
+        <title>Corona Brasil</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 

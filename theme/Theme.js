@@ -110,8 +110,7 @@ const paddings = {
   md: `30rem`,
 
   containerPadding: `
-    padding-left: 20px;
-    padding-right: 20px;
+   
     `,
   // padding-left: 5vw;
   // padding-right: 5vw;
@@ -127,7 +126,7 @@ const paddings = {
   // }
 
   containerPaddingTop: `
-    padding: 5rem;
+    padding: 5rem 0;
   `
 };
 

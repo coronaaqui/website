@@ -1,6 +1,6 @@
 import calango from 'calango';
 
-export const states = [
+export const regions = [
   {
     initial: 'AC',
     name: 'Acre',
@@ -138,14 +138,14 @@ export const states = [
   }
 ];
 
-export const statesByRegion = states.reduce((acc, curr) => {
+export const regionsByRegion = regions.reduce((acc, curr) => {
   return {
     ...acc,
     [curr.region]: [...(acc[curr.region] || []), curr]
   };
 }, {});
 
-export const popularStates = [
+export const popularRegions = [
   {
     initial: 'BA',
     name: 'Bahia',
