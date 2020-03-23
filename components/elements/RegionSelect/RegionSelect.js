@@ -10,7 +10,7 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
   return (
     <>
       <Select
-        placeholder='Select um estado'
+        placeholder='Selecione um estado'
         className={className}
         onSelect={onSelect}
         defaultValue={defaultValue}
