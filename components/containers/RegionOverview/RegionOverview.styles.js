@@ -15,7 +15,7 @@ const style = ({ theme }) => css`
     float: left;
 
     .indicator {
-      flex: 0.14;
+      flex: 0.18;
     }
 
     .ant-select {
