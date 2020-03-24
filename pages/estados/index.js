@@ -11,7 +11,7 @@ import { RegionProvider } from '../../hooks/regions';
 import { Event } from '../../components/elements/Event';
 import { Container } from '../../components/elements/Container';
 import { Title, Text, Dot } from '../../components/elements/Typography';
-import { estadosWithStyle } from './estados.styles';
+import { regionWithStyle } from '../../components/containers/RegionPage/RegionPage.styles';
 import {
   GlobalOutlined,
   TwitterOutlined,
@@ -138,7 +138,7 @@ function normalizeSearch(str) {
   return str.toLowerCase().trim();
 }
 
-export const Estado = estadosWithStyle(({ uf, className }) => {
+export const Estado = regionWithStyle(({ uf, className }) => {
   const [categoryFilter, setCategoryFilter] = useState(false);
   const currRegion =
     uf && regions.filter(item => item.initial === uf.toUpperCase())[0];

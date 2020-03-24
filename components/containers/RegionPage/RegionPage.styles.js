@@ -1,8 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Container } from '../../components/elements/Container';
-import { RegionOverview } from '../../components/containers/RegionOverview';
-
-import { Text } from '../../components/elements/Typography';
 
 const style = ({ theme }) => css`
   background: ${theme.colors.grey.scales[0]};
@@ -121,4 +117,4 @@ const style = ({ theme }) => css`
   }
 `;
 
-export const estadosWithStyle = component => styled(component)(style);
+export const regionWithStyle = component => styled(component)(style);
