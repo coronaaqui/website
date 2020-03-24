@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+const menuHeight = '80vh';
+
 const style = ({ theme }) => css`
   background: ${theme.colors.grey.scales[0]};
 
@@ -24,7 +26,8 @@ const style = ({ theme }) => css`
     .events__menu {
       width: 300px;
       background: #fff;
-      height: 80vh;
+      height: ${menuHeight};
+
       ${theme.shadows.default}
 
       .ant-badge {
@@ -42,6 +45,7 @@ const style = ({ theme }) => css`
         height: 100%;
 
         .ant-list-items {
+          height: calc(${menuHeight} - 104px);
           overflow-y: auto;
         }
 
