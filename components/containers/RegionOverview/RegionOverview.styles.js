@@ -1,25 +1,29 @@
 import styled, { css } from 'styled-components';
-import { Text, Title } from '../../elements/Typography';
-
-const indicatorWidth = 235;
 
 const style = ({ theme }) => css`
-  ${theme.container}
-  padding: 35px 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
 
   .container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    ${theme.container}
 
-    float: left;
+    .group {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
 
-    .indicator {
-      flex: 0.18;
-    }
+      float: left;
 
-    .ant-select {
-      flex: 0.35;
+      .indicator {
+        flex: 0.18;
+      }
+
+      .ant-select {
+        flex: 0.35;
+      }
     }
   }
 `;

@@ -4,6 +4,7 @@ import { Logo } from '../Logo';
 export const headerWithStyle = component =>
   styled(component)(
     ({ theme }) => css`
+      position: relative;
       background: #fff;
       ${theme.shadows.lg};
 
@@ -20,11 +21,6 @@ export const headerWithStyle = component =>
         flex-direction: row;
         height: 60px;
         align-items: center;
-        padding: 0 2rem;
-
-        @media only screen and ${theme.device.tablet} {
-          padding: 0 5rem;
-        }
       }
 
       .cta-section {

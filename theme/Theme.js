@@ -110,8 +110,15 @@ const paddings = {
   md: `30rem`,
 
   containerPadding: `
-   
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+    @media only screen and ${device.tablet}{
+      padding-left: initial;
+      padding-right: initial;
+    }
     `,
+
   // padding-left: 5vw;
   // padding-right: 5vw;
 
@@ -126,10 +133,12 @@ const paddings = {
   // }
 
   containerPaddingTop: `
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 
     @media only screen and ${device.tablet}{
-      padding: 5rem;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
     }
   `
 };
