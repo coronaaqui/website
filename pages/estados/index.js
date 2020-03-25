@@ -38,9 +38,6 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   const dispatch = useDispatch();
   const sectors = useSelector(getSectors);
   const loading = useSelector(createLoadingSelector([LOAD_SECTORS]));
-  useEffect(() => {
-    dispatch(loadSectors());
-  }, [uf]);
 
   const [categoryFilter, setCategoryFilter] = useState(false);
   const currRegion =
@@ -53,6 +50,15 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   };
 
   console.log('##sectors', loading, sectors);
+
+  useEffect(() => {
+    dispatch(
+      loadSectors({
+        ordering: 'events_count',
+        region__initial: currRegion.initial
+      })
+    );
+  }, [uf]);
 
   const categories = categoryFilter
     ? sectors.filter(item => {
@@ -151,7 +157,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                     />
                     <img src='/static/airport.svg' />
                     <span className='name'>{item.name}</span>
-                    <Badge count={item.total_estimated_impact} />
+                    <Badge count={item.events_count} />
                   </List.Item>
                 ))}
               </div>

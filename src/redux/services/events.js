@@ -73,9 +73,12 @@ export function eventsReducer(state = initialState, action) {
 }
 
 // actions
-export function loadSectors() {
+export function loadSectors(filters = {}) {
   return {
-    createRequest: { url: '/organizations/sectors' },
+    createRequest: {
+      url: '/organizations/sectors',
+      filters
+    },
     type: LOAD_SECTORS
   };
 }
@@ -109,6 +112,6 @@ export const getSectors = createSelector(
     Object.keys(state.sectors).length
       ? Object.keys(state.sectors)
           .map(key => state.sectors[key])
-          .sort((a, b) => b.total_estimated_impact - a.total_estimated_impact)
+          .sort((a, b) => b.events_count - a.events_count)
       : []
 );
