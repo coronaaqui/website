@@ -2,12 +2,15 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
-import { eventsReducer } from './services/events/events.reducer';
+import { eventsReducer } from './services/events';
+import { apiMiddleware } from './middlewares/api';
+import { requestsReducer } from '../helpers/redux/requests';
 
 const loggerMiddleware = createLogger();
 
 const rootReducer = combineReducers({
-  eventsReducer
+  eventsReducer,
+  requestsReducer
 });
 
 const devToolsShouldLoad =
@@ -27,8 +30,7 @@ export function createApplicationStore(reducers, middleware, initialData = {}) {
 }
 
 export function configureStore() {
-  const middlewares = [thunkMiddleware, loggerMiddleware];
-
+  const middlewares = [thunkMiddleware, apiMiddleware(), loggerMiddleware];
   const store = createApplicationStore(rootReducer, middlewares, {}); // We can pass initial data to be laoded into the region here
 
   return store;

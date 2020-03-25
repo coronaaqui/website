@@ -1,11 +1,11 @@
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import { CountryOverview } from '../components/containers/CountryOverview';
-import { EventsOverview } from '../components/containers/EventsOverview';
-import { Footer } from '../components/elements/Footer';
-import { Header } from '../components/elements/Header';
-import { Reset } from '../components/elements/Reset';
+import { CountryOverview } from '../src/components/containers/CountryOverview';
+import { EventsOverview } from '../src/components/containers/EventsOverview';
+import { Footer } from '../src/components/elements/Footer';
+import { Header } from '../src/components/elements/Header';
+import { Reset } from '../src/components/elements/Reset';
 
 const Home = () => {
   const [cases, setCases] = useState({});
@@ -36,7 +36,7 @@ const Home = () => {
       <Header />
       <CountryOverview cases={cases} />
       <EventsOverview />
-      <Footer/>
+      <Footer />
     </div>
   );
 };

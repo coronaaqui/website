@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Event } from '../../elements/Event';
 
 const menuHeight = '80vh';
 
@@ -19,8 +20,14 @@ const style = ({ theme }) => css`
     display: flex;
     justify-content: space-between;
 
+    ${Event} {
+      padding: 30px 35px;
+      background: #fff;
+      ${theme.borders.default}
+    }
+
     .events__group {
-      width: calc(98% - 300px);
+      width: calc(95% - 300px);
     }
 
     .events__menu {
@@ -44,9 +51,16 @@ const style = ({ theme }) => css`
       .ant-list {
         height: 100%;
 
-        .ant-list-items {
+        .list-container {
           height: calc(${menuHeight} - 104px);
           overflow-y: auto;
+          .ant-list-item {
+            &:first-child {
+              .name {
+                font-weight: bolder;
+              }
+            }
+          }
         }
 
         .ant-list-header {

@@ -143,6 +143,10 @@ const paddings = {
   `
 };
 
+const borders = {
+  default: `border: 1px solid ${colors.grey.default}`
+};
+
 const theme = {
   colors: {
     ...colors,
@@ -152,7 +156,8 @@ const theme = {
   typography,
   paddings,
   device,
-  container
+  container,
+  borders
 };
 
 export const Theme = ({ children }) => {

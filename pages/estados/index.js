@@ -1,144 +1,46 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Reset } from '../../components/elements/Reset';
-import { Header } from '../../components/elements/Header';
-import { Indicator } from '../../components/elements/Indicator';
-import { RegionSelect } from '../../components/elements/RegionSelect';
-import { RegionOverview } from '../../components/containers/RegionOverview';
-import { regions } from '../../resources/regions';
-import { RegionProvider } from '../../hooks/regions';
-import { Event } from '../../components/elements/Event';
-import { Container } from '../../components/elements/Container';
-import { Title, Text, Dot } from '../../components/elements/Typography';
-import { regionWithStyle } from '../../components/containers/RegionPage/RegionPage.styles';
+import { Reset } from '../../src/components/elements/Reset';
+import { Header } from '../../src/components/elements/Header';
+import { Indicator } from '../../src/components/elements/Indicator';
+import { RegionSelect } from '../../src/components/elements/RegionSelect';
+import { RegionOverview } from '../../src/components/containers/RegionOverview';
+import { regions } from '../../src/resources/regions';
+import { RegionProvider } from '../../src/hooks/regions';
+import { Event } from '../../src/components/elements/Event';
+import { Container } from '../../src/components/elements/Container';
+import { Title, Text, Dot } from '../../src/components/elements/Typography';
+import { regionWithStyle } from '../../src/components/containers/RegionPage/RegionPage.styles';
 import {
   GlobalOutlined,
   TwitterOutlined,
   InstagramOutlined,
   SearchOutlined
 } from '@ant-design/icons';
-import { Input, List, Checkbox, Badge } from 'antd';
+import { Input, List, Checkbox, Badge, Spin } from 'antd';
+import { Footer } from '../../src/components/elements/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  loadSectors,
+  getSectors,
+  LOAD_SECTORS,
+  selectSector
+} from '../../src/redux/services/events';
+import { createLoadingSelector } from '../../src/helpers/redux/requests';
 
-const { Search } = Input;
-
-const sectors = [
-  {
-    id: 23,
-    total_estimated_impact: 2,
-    name: 'Transportes'
-  },
-  {
-    id: 5,
-    total_estimated_impact: 1,
-    name: 'Rodoviárias'
-  },
-  {
-    id: 15,
-    total_estimated_impact: 1,
-    name: 'Shoppings'
-  },
-  {
-    id: 22,
-    total_estimated_impact: 0,
-    name: 'Aplicativos de transporte'
-  },
-  {
-    id: 16,
-    total_estimated_impact: 0,
-    name: 'Bancos'
-  },
-  {
-    id: 7,
-    total_estimated_impact: 0,
-    name: 'Bares'
-  },
-  {
-    id: 1,
-    total_estimated_impact: 0,
-    name: 'Construção Civil'
-  },
-  {
-    id: 11,
-    total_estimated_impact: 0,
-    name: 'Creches'
-  },
-  {
-    id: 9,
-    total_estimated_impact: 0,
-    name: 'Escolas'
-  },
-  {
-    id: 2,
-    total_estimated_impact: 0,
-    name: 'Farmácias'
-  },
-  {
-    id: 3,
-    total_estimated_impact: 0,
-    name: 'Hospitais'
-  },
-  {
-    id: 14,
-    total_estimated_impact: 0,
-    name: 'Indústrias'
-  },
-  {
-    id: 21,
-    total_estimated_impact: 0,
-    name: 'Oficina de automóveis'
-  },
-  {
-    id: 12,
-    total_estimated_impact: 0,
-    name: 'Parques'
-  },
-  {
-    id: 18,
-    total_estimated_impact: 0,
-    name: 'Pet Shops'
-  },
-  {
-    id: 17,
-    total_estimated_impact: 0,
-    name: 'Postos de Gasolina'
-  },
-  {
-    id: 13,
-    total_estimated_impact: 0,
-    name: 'Praias'
-  },
-  {
-    id: 8,
-    total_estimated_impact: 0,
-    name: 'Restaurantes & Lanchonetes'
-  },
-  {
-    id: 6,
-    total_estimated_impact: 0,
-    name: 'Rodovias'
-  },
-  {
-    id: 4,
-    total_estimated_impact: 0,
-    name: 'Supermercados'
-  },
-  {
-    id: 19,
-    total_estimated_impact: 0,
-    name: 'Transportadoras'
-  },
-  {
-    id: 10,
-    total_estimated_impact: 0,
-    name: 'Universidades'
-  }
-];
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
 }
 
 export const Estado = regionWithStyle(({ uf, className }) => {
+  const dispatch = useDispatch();
+  const sectors = useSelector(getSectors);
+  const loading = useSelector(createLoadingSelector([LOAD_SECTORS]));
+  useEffect(() => {
+    dispatch(loadSectors());
+  }, [uf]);
+
   const [categoryFilter, setCategoryFilter] = useState(false);
   const currRegion =
     uf && regions.filter(item => item.initial === uf.toUpperCase())[0];
@@ -149,13 +51,19 @@ export const Estado = regionWithStyle(({ uf, className }) => {
     setCategoryFilter(value);
   };
 
+  console.log('##sectors', loading, sectors);
+
   const categories = categoryFilter
     ? sectors.filter(item => {
-        return normalizeSearch(item.name).includes(
-          normalizeSearch(categoryFilter)
-        );
-      })
+      return normalizeSearch(item.name).includes(
+        normalizeSearch(categoryFilter)
+      );
+    })
     : sectors;
+
+  const handleSectorCheck = sectorId => () => {
+    dispatch(selectSector(sectorId));
+  };
 
   return (
     <div className={'estado-page ' + className}>
@@ -221,22 +129,93 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                 </>
               }
               bordered
-              dataSource={categories}
-              renderItem={item => (
+              loading={
+                loading?.[LOAD_SECTORS]?.phase === 'LOADING' || !sectors.length
+              }
+            >
+              <div className='list-container'>
                 <List.Item>
                   <Checkbox />
                   <img src='/static/airport.svg' />
-                  <span className='name'>{item.name}</span>
-                  <Badge count={25} />
+                  <span className='name'>Mais Populares</span>
                 </List.Item>
-              )}
-            />
+                {categories.map(item => (
+                  <List.Item>
+                    <Checkbox checked={item.checked} onChange={handleSectorCheck(item.id)} />
+                    <img src='/static/airport.svg' />
+                    <span className='name'>{item.name}</span>
+                    <Badge count={item.total_estimated_impact} />
+                  </List.Item>
+                ))}
+              </div>
+            </List>
           </div>
           <div className='events__group'>
-            <Event />
+            <Event title='Aeroporto'>
+              <Event.Item
+                city='Guarulhos'
+                region={'SP'}
+                status={'F'}
+                title={'Aeroporto Internacional de Guarulhos'}
+                description={
+                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
+                }
+              ></Event.Item>
+              <Event.Item
+                city='São Paulo'
+                region={'SP'}
+                status={'P'}
+                title={'Aeroporto Internacional de Congonhas'}
+                description={
+                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
+                }
+              ></Event.Item>
+            </Event>
+
+            <Event title='Hospitais'>
+              <Event.Item
+                city='Guarulhos'
+                region={'SP'}
+                status={'F'}
+                title={'Aeroporto Internacional de Guarulhos'}
+                description={
+                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
+                }
+              ></Event.Item>
+              <Event.Item
+                city='São Paulo'
+                region={'SP'}
+                status={'P'}
+                title={'Aeroporto Internacional de Congonhas'}
+                description={
+                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
+                }
+              ></Event.Item>
+            </Event>
+            <Event title='Aeroporto'>
+              <Event.Item
+                city='Guarulhos'
+                region={'SP'}
+                status={'F'}
+                title={'Aeroporto Internacional de Guarulhos'}
+                description={
+                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
+                }
+              ></Event.Item>
+              <Event.Item
+                city='São Paulo'
+                region={'SP'}
+                status={'P'}
+                title={'Aeroporto Internacional de Congonhas'}
+                description={
+                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
+                }
+              ></Event.Item>
+            </Event>
           </div>
         </section>
       </RegionProvider>
+      <Footer />
     </div>
   );
 });

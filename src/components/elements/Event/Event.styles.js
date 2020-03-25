@@ -1,13 +1,41 @@
 import styled, { css } from 'styled-components';
-import { Text } from '../../elements/Typography';
+import { Text } from '../Typography';
+
+const descriptionWidth = 65;
 
 const styles = ({ theme }) => css`
   margin: 0 0 20px;
 
   .ant-timeline {
     margin: 0;
+
+    .anticon {
+      font-size: 18px;
+    }
+
+    .F .anticon {
+      color: #ff3f3f;
+    }
+    
+    .P .anticon {
+      color: ${theme.colors.yellow.default};
+    }
+
+    .O .anticon {
+      color: ${theme.colors.green.default};
+    }
+    
+    .ant-timeline-item-content {
+      margin-left: 25px;
+    }
+
+    a {
+      color: ${theme.colors.primary.default} !important;
+      font-weight: 300;
+    }
+
     @media only screen and ${theme.device.mobileL} {
-      margin-left: 100px;
+      margin-left: ${descriptionWidth + 20}px;
       margin-top: 20px;
     }
 
@@ -18,6 +46,7 @@ const styles = ({ theme }) => css`
       }
 
       ${Text} {
+        margin: 4px 0;
         font-size: 14px;
       }
     }
@@ -29,17 +58,20 @@ const styles = ({ theme }) => css`
       gap:15px;
       text-align: center;
       @media only screen and ${theme.device.mobileL} {
-        grid-template-columns:80px auto;
+        grid-template-columns:${descriptionWidth}px auto;
         text-align: left;
       }
       picture{
         align-self:flex-start;
         img {
           width: 100%;
-          max-width: 120px;
+          max-width: 110px;
         }
       }
       figcaption {
+        display: flex;
+        align-items: center;
+
         h2 {
           font-size: 20px;
           color: ${theme.colors.primary.dark};
