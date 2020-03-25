@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
 // action types
 export const LOAD_SECTORS = 'LOAD_SECTORS';
 export const SET_SELECTED_SECTORS = 'SET_SELECTED_SECTORS';
-export const LOAD_EVENTS = 'LOAD_EVENTS'
+export const LOAD_EVENTS = 'LOAD_EVENTS';
 
 const initialState = {
   sectors: {},
@@ -12,10 +12,9 @@ const initialState = {
 };
 
 function select(state, action) {
-  const { sectors } = state
-  const { sectorId } = action.payload
-  const currSector = sectors?.[sectorId]
-
+  const { sectors } = state;
+  const { sectorId } = action.payload;
+  const currSector = sectors?.[sectorId];
 
   debugger;
 
@@ -32,7 +31,10 @@ function select(state, action) {
 
 function saveEvents(state, action) {
   debugger;
-  const { payload, filters: { sector }} = action
+  const {
+    payload,
+    filters: { sector }
+  } = action;
   const currSector = state.sectors?.[sector];
   debugger;
   return {
@@ -43,7 +45,7 @@ function saveEvents(state, action) {
         data: payload
       }
     }
-  }
+  };
 }
 export function eventsReducer(state = initialState, action) {
   const { type, payload } = action;
@@ -60,11 +62,10 @@ export function eventsReducer(state = initialState, action) {
       };
 
     case success(LOAD_EVENTS):
-      return saveEvents(state, action)
-
+      return saveEvents(state, action);
 
     case SET_SELECTED_SECTORS:
-      return select(state, action)
+      return select(state, action);
 
     default:
       return state;
@@ -88,10 +89,10 @@ export function loadEvents(sector, region) {
         limit: 5,
         offset: 0,
         sector,
-        region
+        region__initial: region
       }
     }
-  }
+  };
 }
 
 export function selectSector(sectorId) {
@@ -106,6 +107,8 @@ export const getSectors = createSelector(
   globalState => globalState.eventsReducer,
   state =>
     Object.keys(state.sectors).length
-      ? Object.keys(state.sectors).map(key => state.sectors[key]).sort((a, b) => b.total_estimated_impact - a.total_estimated_impact)
+      ? Object.keys(state.sectors)
+          .map(key => state.sectors[key])
+          .sort((a, b) => b.total_estimated_impact - a.total_estimated_impact)
       : []
 );
