@@ -174,12 +174,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                             Ooops, nenhuma informação sobre{' '}
                             <strong>{item.name}</strong> encontrada :/
                           </p>{' '}
-                          
-                          
-                            <a>
-                              Clique aqui para reportar qualquer informação.
-                            </a>
-                          
+                          <a>Clique aqui para reportar qualquer informação.</a>
                         </div>
                       }
                     />
@@ -190,7 +185,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                         city={item.city.name}
                         status={item.status_type}
                         title={item.name}
-                        description={item?.description || item?.source?.text}
+                        description={item?.text || item?.source?.text}
                       ></Event.Item>
                     ))}
                 </Event>
