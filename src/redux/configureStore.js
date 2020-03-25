@@ -4,6 +4,7 @@ import { createLogger } from 'redux-logger';
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { eventsReducer } from './services/events';
 import { apiMiddleware } from './middlewares/api';
+import { filtersMiddleware } from './middlewares/filters';
 import { requestsReducer } from '../helpers/redux/requests';
 
 const loggerMiddleware = createLogger();
@@ -30,7 +31,7 @@ export function createApplicationStore(reducers, middleware, initialData = {}) {
 }
 
 export function configureStore() {
-  const middlewares = [thunkMiddleware, apiMiddleware(), loggerMiddleware];
+  const middlewares = [thunkMiddleware, filtersMiddleware, apiMiddleware(), loggerMiddleware];
   const store = createApplicationStore(rootReducer, middlewares, {}); // We can pass initial data to be laoded into the region here
 
   return store;

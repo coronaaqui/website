@@ -12,6 +12,7 @@ import 'antd/lib/checkbox/style/index.css';
 import 'antd/lib/badge/style/index.css';
 import 'antd/lib/input/style/index.css';
 import 'antd/lib/spin/style/index.css';
+import 'antd/lib/empty/style/index.css';
 
 const App = ({ Component, pageProps, store }) => {
   return (

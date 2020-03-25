@@ -10,7 +10,7 @@ import {
   ExclamationCircleOutlined
 } from '@ant-design/icons';
 
-const EventItem = ({ city, region, status = 'F', title, description }) => {
+const EventItem = ({ city, status = 'F', title, description }) => {
   const statusMessages = {
     F: {
       message: 'Acesso Bloqueado',
@@ -33,7 +33,7 @@ const EventItem = ({ city, region, status = 'F', title, description }) => {
       color={statusMessages.color}
     >
       <span className='city'>
-        {city} - {region}
+        {city}
       </span>
       <p>
         <span className='label'>{title} - </span> {statusMessages.message}

@@ -4,15 +4,17 @@ import { createSelector } from 'reselect';
 // action types
 export const LOAD_SECTORS = 'LOAD_SECTORS';
 export const SET_SELECTED_SECTORS = 'SET_SELECTED_SECTORS';
+export const LOAD_EVENTS = 'LOAD_EVENTS'
+
 const initialState = {
   sectors: {},
   selectedSectors: []
 };
 
-function select(state, payload) {
+function select(state, action) {
   const { sectors } = state
-  const { sectorId } = payload
-  const currSector = sectors?.[payload.sectorId]
+  const { sectorId } = action.payload
+  const currSector = sectors?.[sectorId]
 
 
   debugger;
@@ -22,17 +24,34 @@ function select(state, payload) {
       ...state.sectors,
       [sectorId]: {
         ...currSector,
-        checked: !currSector.checked
+        checked: currSector.checked !== undefined ? !currSector.checked : true
       }
     }
   };
 }
 
+function saveEvents(state, action) {
+  debugger;
+  const { payload, filters: { sector }} = action
+  const currSector = state.sectors?.[sector];
+  debugger;
+  return {
+    sectors: {
+      ...state.sectors,
+      [sector]: {
+        ...currSector,
+        data: payload
+      }
+    }
+  }
+}
 export function eventsReducer(state = initialState, action) {
   const { type, payload } = action;
 
+  debugger;
   switch (type) {
     case success(LOAD_SECTORS):
+      debugger;
       return {
         ...state,
         sectors: Object.assign(
@@ -40,8 +59,12 @@ export function eventsReducer(state = initialState, action) {
         )
       };
 
+    case success(LOAD_EVENTS):
+      return saveEvents(state, action)
+
+
     case SET_SELECTED_SECTORS:
-      return select(state, payload)
+      return select(state, action)
 
     default:
       return state;
@@ -56,6 +79,21 @@ export function loadSectors() {
   };
 }
 
+export function loadEvents(sector, region) {
+  return {
+    type: LOAD_EVENTS,
+    createRequest: {
+      url: '/news/events/',
+      filters: {
+        limit: 5,
+        offset: 0,
+        sector,
+        region
+      }
+    }
+  }
+}
+
 export function selectSector(sectorId) {
   return {
     type: SET_SELECTED_SECTORS,
@@ -68,6 +106,6 @@ export const getSectors = createSelector(
   globalState => globalState.eventsReducer,
   state =>
     Object.keys(state.sectors).length
-      ? Object.keys(state.sectors).map(key => state.sectors[key])
+      ? Object.keys(state.sectors).map(key => state.sectors[key]).sort((a, b) => b.total_estimated_impact - a.total_estimated_impact)
       : []
 );

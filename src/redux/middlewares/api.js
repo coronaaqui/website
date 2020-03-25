@@ -66,7 +66,7 @@ export function apiMiddleware(restClient = fetch, settings = defaultSettings) {
 
       const response = await responseHandlers[responseType](rawResponse);
 
-      next({ type: TYPE_SUCCESS, payload: response, ...rest });
+      next({ type: TYPE_SUCCESS, payload: response , ...rest });
       return response;
     } catch (error) {
       next({ type: TYPE_FAILURE, error, ...rest });

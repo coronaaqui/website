@@ -18,14 +18,15 @@ import {
   InstagramOutlined,
   SearchOutlined
 } from '@ant-design/icons';
-import { Input, List, Checkbox, Badge, Spin } from 'antd';
+import { Input, List, Checkbox, Badge, Empty, Spin } from 'antd';
 import { Footer } from '../../src/components/elements/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   loadSectors,
   getSectors,
   LOAD_SECTORS,
-  selectSector
+  selectSector,
+  loadEvents
 } from '../../src/redux/services/events';
 import { createLoadingSelector } from '../../src/helpers/redux/requests';
 
@@ -55,14 +56,17 @@ export const Estado = regionWithStyle(({ uf, className }) => {
 
   const categories = categoryFilter
     ? sectors.filter(item => {
-      return normalizeSearch(item.name).includes(
-        normalizeSearch(categoryFilter)
-      );
-    })
+        return normalizeSearch(item.name).includes(
+          normalizeSearch(categoryFilter)
+        );
+      })
     : sectors;
 
-  const handleSectorCheck = sectorId => () => {
+  const filteredCategories = categories.filter(item => item.checked);
+
+  const handleSectorCheck = sectorId => ev => {
     dispatch(selectSector(sectorId));
+    if (ev.target.checked) dispatch(loadEvents(sectorId, currRegion?.initial));
   };
 
   return (
@@ -141,7 +145,10 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                 </List.Item>
                 {categories.map(item => (
                   <List.Item>
-                    <Checkbox checked={item.checked} onChange={handleSectorCheck(item.id)} />
+                    <Checkbox
+                      checked={item.checked}
+                      onChange={handleSectorCheck(item.id)}
+                    />
                     <img src='/static/airport.svg' />
                     <span className='name'>{item.name}</span>
                     <Badge count={item.total_estimated_impact} />
@@ -151,67 +158,43 @@ export const Estado = regionWithStyle(({ uf, className }) => {
             </List>
           </div>
           <div className='events__group'>
-            <Event title='Aeroporto'>
-              <Event.Item
-                city='Guarulhos'
-                region={'SP'}
-                status={'F'}
-                title={'Aeroporto Internacional de Guarulhos'}
-                description={
-                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
-                }
-              ></Event.Item>
-              <Event.Item
-                city='São Paulo'
-                region={'SP'}
-                status={'P'}
-                title={'Aeroporto Internacional de Congonhas'}
-                description={
-                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
-                }
-              ></Event.Item>
-            </Event>
-
-            <Event title='Hospitais'>
-              <Event.Item
-                city='Guarulhos'
-                region={'SP'}
-                status={'F'}
-                title={'Aeroporto Internacional de Guarulhos'}
-                description={
-                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
-                }
-              ></Event.Item>
-              <Event.Item
-                city='São Paulo'
-                region={'SP'}
-                status={'P'}
-                title={'Aeroporto Internacional de Congonhas'}
-                description={
-                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
-                }
-              ></Event.Item>
-            </Event>
-            <Event title='Aeroporto'>
-              <Event.Item
-                city='Guarulhos'
-                region={'SP'}
-                status={'F'}
-                title={'Aeroporto Internacional de Guarulhos'}
-                description={
-                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
-                }
-              ></Event.Item>
-              <Event.Item
-                city='São Paulo'
-                region={'SP'}
-                status={'P'}
-                title={'Aeroporto Internacional de Congonhas'}
-                description={
-                  'Quisque ultrices ultricies ex, in fermentum est bibendum eget. Nulla facilisi. Pellentesque suscipit placerat massa vitae elementum. Praesent ut lobortis odio, eu commodo dui. Aliquam a sodales nisl. Proin tempus, diam vestibulum ullamcorper suscipit, orci velit consequat magn.'
-                }
-              ></Event.Item>
-            </Event>
+            {!filteredCategories.length && (
+              <Empty description='Selecione uma categoria.' />
+            )}
+            {filteredCategories
+              .filter(item => item.checked)
+              .map(item => (
+                <Event title={item.name}>
+                  {item.data && !item.data.results.length && (
+                    <Empty
+                      image={<img width={150} src='/static/loudspeaker.svg' />}
+                      description={
+                        <div>
+                          <p>
+                            Ooops, nenhuma informação sobre{' '}
+                            <strong>{item.name}</strong> encontrada :/
+                          </p>{' '}
+                          
+                          
+                            <a>
+                              Clique aqui para reportar qualquer informação.
+                            </a>
+                          
+                        </div>
+                      }
+                    />
+                  )}
+                  {item.data &&
+                    item.data?.results.map(item => (
+                      <Event.Item
+                        city={item.city.name}
+                        status={item.status_type}
+                        title={item.name}
+                        description={item?.description || item?.source?.text}
+                      ></Event.Item>
+                    ))}
+                </Event>
+              ))}
           </div>
         </section>
       </RegionProvider>

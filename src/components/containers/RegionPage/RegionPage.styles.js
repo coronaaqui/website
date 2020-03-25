@@ -19,8 +19,9 @@ const style = ({ theme }) => css`
   .events {
     display: flex;
     justify-content: space-between;
+    min-height: 95vh;
 
-    ${Event} {
+    .event {
       padding: 30px 35px;
       background: #fff;
       ${theme.borders.default}
