@@ -32,9 +32,9 @@ const EventItem = ({ city, status = 'F', title, description }) => {
       dot={statusMessages.icon}
       color={statusMessages.color}
     >
-      <span className='city'>
+    {city &&  <span className='city'>
         {city}
-      </span>
+      </span>}
       <p>
         <span className='label'>{title} - </span> {statusMessages.message}
       </p>

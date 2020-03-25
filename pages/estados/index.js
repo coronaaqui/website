@@ -182,7 +182,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                   {item.data &&
                     item.data?.results.map(item => (
                       <Event.Item
-                        city={item.city.name}
+                        city={item?.city?.name}
                         status={item.status_type}
                         title={item.name}
                         description={item?.text || item?.source?.text}
