@@ -88,10 +88,12 @@ const EventItem = ({
           </Popover>
         )}
 
-        <div className='info'>
-          <LinkOutlined />
-          <p>Fonte: {event.source.source}</p>
-        </div>
+        {event?.source?.source && (
+          <div className='info'>
+            <LinkOutlined />
+            <p>Fonte: {event.source.source}</p>
+          </div>
+        )}
       </div>
       <Text>{description}</Text>
       {event.source?.link && (

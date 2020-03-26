@@ -48,14 +48,11 @@ function saveSectors(state, action) {
   const { type, payload } = action;
 
   const sortedSectors = payload.sort((a, b) => b.events_count - a.events_count);
+
   debugger;
   return {
     ...state,
-    sectors: Object.assign(
-      ...sortedSectors.map((item, idx) => ({
-        [item.id]: item
-      }))
-    ),
+    sectors: sortedSectors,
     selectedSectors: Object.assign(
       ...sortedSectors
         .filter((_, idx) => idx < 4)
@@ -115,12 +112,7 @@ export function selectSector(sectorId) {
 // selectors
 export const getSectors = createSelector(
   globalState => globalState.eventsReducer,
-  state =>
-    Object.keys(state.sectors).length
-      ? Object.keys(state.sectors)
-          .map(key => state.sectors[key])
-          .sort((a, b) => b.events_count - a.events_count)
-      : []
+  state => state.sectors
 );
 
 export const getLastCheck = createSelector(
