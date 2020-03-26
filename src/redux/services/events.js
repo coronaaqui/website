@@ -7,7 +7,7 @@ export const SET_SELECTED_SECTORS = 'SET_SELECTED_SECTORS';
 export const LOAD_EVENTS = 'LOAD_EVENTS';
 
 const initialState = {
-  sectors: {},
+  sectors: [],
   events: {},
   selectedSectors: {},
   lastCheck: null
