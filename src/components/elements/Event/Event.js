@@ -17,20 +17,21 @@ function formatDate(date) {
   return moment(date).format('DD.MM.YY');
 }
 
-const messages = (status) => ({
-  F: {
-    message: 'Acesso Bloqueado',
-    icon: <CloseCircleOutlined />
-  },
-  P: {
-    message: 'Acesso Limitado',
-    icon: <ExclamationCircleOutlined />
-  },
-  O: {
-    message: 'Acesso Liberado',
-    icon: <CheckOutlined />
-  }
-}[status]);
+const messages = status =>
+  ({
+    F: {
+      message: 'Acesso Bloqueado',
+      icon: <CloseCircleOutlined />
+    },
+    P: {
+      message: 'Acesso Limitado',
+      icon: <ExclamationCircleOutlined />
+    },
+    O: {
+      message: 'Acesso Liberado',
+      icon: <CheckOutlined />
+    }
+  }[status]);
 
 const EventItem = ({
   city = 'Em todo o estado',
@@ -40,7 +41,7 @@ const EventItem = ({
   event
 }) => {
   const { author } = event;
-  const statusMessages = messages(status)
+  const statusMessages = messages(status);
 
   return (
     <Timeline.Item
@@ -50,23 +51,27 @@ const EventItem = ({
     >
       <div className='city'>
         {city}{' '}
-        {author && <Popover
-          content={
-            <div style={{ textAlign: 'center' }}>
-              Evento criado por {author?.name}. <br />
-              <a>Clique aqui</a> para fazer parte de nossa equipe de
-              colaboradores.
+        {author && (
+          <Popover
+            content={
+              <div style={{ textAlign: 'center' }}>
+                Evento criado por {author?.name}. <br />
+                <a>Clique aqui</a> para fazer parte de nossa equipe de
+                colaboradores.
+              </div>
+            }
+          >
+            <div className='info'>
+              <NotificationOutlined />
+              <p>{author.name}</p>
             </div>
-          }
-        >
-          <div className='info'>
-            <NotificationOutlined />
-            <p>{author.name}</p>
-          </div>
-        </Popover>}
+          </Popover>
+        )}
       </div>
       <div className='meta'>
-        <div className='label'>{title} - </div>
+        <Popover content={<div style={{ textAlign: 'center' }}>{title}</div>}>
+          <div className='label'>{title} - </div>
+        </Popover>
         <div className='status'>{statusMessages.message} - </div>
         {(event.from_date !== null || event.to_date !== null) && (
           <Popover
