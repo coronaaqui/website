@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { regionSelectWithStyle } from './RegionSelect.styles';
 import Select from 'antd/lib/select';
 import { regionsByRegion } from '../../../resources/regions';
@@ -6,7 +6,25 @@ import Flag from '../Flag/Flag';
 
 const { Option, OptGroup } = Select;
 
+function cleanStr(str) {
+  return str !== null && typeof str === 'string'
+    ? str.toLowerCase().replace(' ', '')
+    : str;
+}
+
+function generateSearchTerms(item) {
+  const term = cleanStr(Object.values(item).join(''));
+
+  return term;
+}
+
 const RegionSelect = ({ className, defaultValue, onSelect }) => {
+  const [query, setQuery] = useState(null);
+
+  const handleSearch = q => {
+    setQuery(q);
+  };
+
   return (
     <>
       <Select
@@ -14,6 +32,7 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
         className={className}
         onSelect={onSelect}
         defaultValue={defaultValue}
+        onSearch={handleSearch}
         showSearch
       >
         {Object.keys(regionsByRegion).map(region => (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Reset } from '../../src/components/elements/Reset';
@@ -26,9 +26,13 @@ import {
   getSectors,
   LOAD_SECTORS,
   selectSector,
-  loadEvents
+  loadEvents,
+  getLastCheck,
+  getEvents,
+  getSelectedSectors
 } from '../../src/redux/services/events';
 import { createLoadingSelector } from '../../src/helpers/redux/requests';
+import { SectorIcon } from '../../src/components/elements/SectorIcon';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
@@ -37,7 +41,10 @@ function normalizeSearch(str) {
 export const Estado = regionWithStyle(({ uf, className }) => {
   const dispatch = useDispatch();
   const sectors = useSelector(getSectors);
+  const events = useSelector(getEvents);
+  const lastCheck = useSelector(getLastCheck);
   const loading = useSelector(createLoadingSelector([LOAD_SECTORS]));
+  const selectedSectors = useSelector(getSelectedSectors);
 
   const [categoryFilter, setCategoryFilter] = useState(false);
   const currRegion =
@@ -45,11 +52,8 @@ export const Estado = regionWithStyle(({ uf, className }) => {
 
   const handleCategorySearch = ev => {
     const { value } = ev.target;
-
     setCategoryFilter(value);
   };
-
-  console.log('##sectors', loading, sectors);
 
   useEffect(() => {
     dispatch(
@@ -60,6 +64,21 @@ export const Estado = regionWithStyle(({ uf, className }) => {
     );
   }, [uf]);
 
+  useEffect(() => {
+    if (!sectors.length) return;
+
+    if (!lastCheck) {
+      for (let sectorId of Object.keys(selectedSectors).filter(
+        key => !!selectedSectors[key]
+      )) {
+        dispatch(loadEvents(sectorId, currRegion?.initial));
+      }
+    }
+
+    if (selectedSectors[lastCheck])
+      dispatch(loadEvents(lastCheck, currRegion?.initial));
+  }, [selectedSectors]);
+
   const categories = categoryFilter
     ? sectors.filter(item => {
         return normalizeSearch(item.name).includes(
@@ -68,11 +87,19 @@ export const Estado = regionWithStyle(({ uf, className }) => {
       })
     : sectors;
 
-  const filteredCategories = categories.filter(item => item.checked);
+  const categoriesList = categories.filter(item => selectedSectors[item.id]);
+
+  // doesnt reverse array if the
+  // category wasnt checked from the ui
+  const checkedFromUi = useMemo(() => {
+    return !!lastCheck;
+  }, [selectedSectors]);
+  const filteredCategories = checkedFromUi
+    ? categoriesList.reverse()
+    : categoriesList;
 
   const handleSectorCheck = sectorId => ev => {
     dispatch(selectSector(sectorId));
-    if (ev.target.checked) dispatch(loadEvents(sectorId, currRegion?.initial));
   };
 
   return (
@@ -127,7 +154,6 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                 <>
                   <div className='header'>
                     <h2>Categorias</h2>{' '}
-                    <Checkbox indeterminate={true}>Todas</Checkbox>
                   </div>
                   <div className='search'>
                     <Input
@@ -144,18 +170,14 @@ export const Estado = regionWithStyle(({ uf, className }) => {
               }
             >
               <div className='list-container'>
-                <List.Item>
-                  <Checkbox />
-                  <img src='/static/airport.svg' />
-                  <span className='name'>Mais Populares</span>
-                </List.Item>
                 {categories.map(item => (
                   <List.Item>
                     <Checkbox
-                      checked={item.checked}
+                      checked={!!selectedSectors?.[item.id]}
                       onChange={handleSectorCheck(item.id)}
                     />
-                    <img src='/static/airport.svg' />
+                    <SectorIcon sector={item.id} />
+
                     <span className='name'>{item.name}</span>
                     <Badge count={item.events_count} />
                   </List.Item>
@@ -167,35 +189,37 @@ export const Estado = regionWithStyle(({ uf, className }) => {
             {!filteredCategories.length && (
               <Empty description='Selecione uma categoria.' />
             )}
-            {filteredCategories
-              .filter(item => item.checked)
-              .map(item => (
-                <Event title={item.name}>
-                  {item.data && !item.data.results.length && (
-                    <Empty
-                      image={<img width={150} src='/static/loudspeaker.svg' />}
-                      description={
-                        <div>
-                          <p>
-                            Ooops, nenhuma informação sobre{' '}
-                            <strong>{item.name}</strong> encontrada :/
-                          </p>{' '}
-                          <a>Clique aqui para reportar qualquer informação.</a>
-                        </div>
-                      }
-                    />
-                  )}
-                  {item.data &&
-                    item.data?.results.map(item => (
-                      <Event.Item
-                        city={item?.city?.name}
-                        status={item.status_type}
-                        title={item.name}
-                        description={item?.text || item?.source?.text}
-                      ></Event.Item>
-                    ))}
-                </Event>
-              ))}
+            {filteredCategories.map(item => (
+              <Event sector={item.id} title={item.name}>
+                {events?.[item.id] && !events?.[item.id].results.length && (
+                  <Empty
+                    image={
+                      <img width={150} src='/static/icons/loudspeaker.svg' />
+                    }
+                    description={
+                      <div>
+                        <p>
+                          Ooops, nenhuma informação sobre{' '}
+                          <strong>{item.name}</strong> encontrada :/
+                        </p>{' '}
+                        <a>Clique aqui para reportar qualquer informação.</a>
+                      </div>
+                    }
+                  />
+                )}
+
+                {events?.[item.id] &&
+                  events?.[item.id].results.map(item => (
+                    <Event.Item
+                      event={item}
+                      city={item?.city?.name}
+                      status={item.status_type}
+                      title={item.name}
+                      description={item?.text || item?.source?.text}
+                    ></Event.Item>
+                  ))}
+              </Event>
+            ))}
           </div>
         </section>
       </RegionProvider>

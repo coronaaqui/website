@@ -27,8 +27,7 @@ const API_BASE = 'https://api.coronabrasil.org';
 /* const API_BASE = '/api/proxy'; */
 
 export function apiMiddleware(restClient = fetch, settings = defaultSettings) {
-  return () => next => async action => {
-    console.log('##midleware', action);
+  return ({ dispatch }) => next => async action => {
     if (!action.createRequest) {
       return next(action);
     }
@@ -66,7 +65,7 @@ export function apiMiddleware(restClient = fetch, settings = defaultSettings) {
 
       const response = await responseHandlers[responseType](rawResponse);
 
-      next({ type: TYPE_SUCCESS, payload: response , ...rest });
+      next({ type: TYPE_SUCCESS, payload: response, ...rest });
       return response;
     } catch (error) {
       next({ type: TYPE_FAILURE, error, ...rest });
