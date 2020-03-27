@@ -24,10 +24,10 @@ const EventsOverview = ({ className, events, sectors }) => {
 
         <section className='events-overview__container'>
           {sectors.map(item => (
-            <Event maxHeight={'500px'} sector={item.id} title={item.name}>
+            <Event scroll={false} sector={item.id} title={item.name}>
               {events?.[item.id] &&
                 events?.[item.id].results
-                  .filter((_, idx) => idx < 6)
+                  .filter((_, idx) => idx < 2)
                   .map(item => (
                     <Event.Item
                       event={item}

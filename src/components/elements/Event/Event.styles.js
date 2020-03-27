@@ -3,15 +3,19 @@ import { Text } from '../Typography';
 
 const descriptionWidth = 65;
 
-const styles = ({ maxHeight = '700px', theme }) => css`
+const styles = ({ scroll = true, maxHeight = '700px', theme }) => css`
   margin: 0 0 20px;
 
   .ant-timeline {
     margin: 0;
-    max-height: ${maxHeight};
-    overflow-y: auto;
     padding: 4px;
 
+    ${scroll &&
+      `
+    max-height: ${maxHeight};
+    overflow-y: auto;
+    `}
+  
     .city {
       display: flex;
 
