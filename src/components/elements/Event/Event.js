@@ -50,8 +50,9 @@ const EventItem = ({
       color={statusMessages.color}
     >
       <div className='city'>
-        {city}{' '}
-        {author && (
+        {city}
+        {event?.region?.initial && ` - ${event?.region?.initial}`}
+        {author && author?.name && (
           <Popover
             content={
               <div style={{ textAlign: 'center' }}>

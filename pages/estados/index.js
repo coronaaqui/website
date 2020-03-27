@@ -59,7 +59,8 @@ export const Estado = regionWithStyle(({ uf, className }) => {
     dispatch(
       loadSectors({
         ordering: 'events_count',
-        region__initial: currRegion.initial
+        region__initial: currRegion.initial,
+        limit: 100
       })
     );
   }, [uf]);

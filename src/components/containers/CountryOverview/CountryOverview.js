@@ -11,8 +11,9 @@ import { RegionSelect } from '../../elements/RegionSelect';
 import { Text, Title } from '../../elements/Typography';
 import { Dot } from '../../elements/Typography/Typography';
 import { countryOverviewWithStyle } from './CountryOverview.styles';
+import { SectorIcon } from '../../elements/SectorIcon';
 
-const CountryOverview = ({ className, cases }) => {
+const CountryOverview = ({ className, sectors, cases }) => {
   const navigate = val => {
     return Router.push(
       `/estados?uf=${val.toLowerCase()}`,
@@ -29,14 +30,16 @@ const CountryOverview = ({ className, cases }) => {
   };
 
   const handleRegionLink = val => ev => {
-    ev.preventDefault()
+    ev.preventDefault();
     navigate(val);
   };
+
+  console.log(sectors);
 
   return (
     <section className={'country-overview ' + className}>
       <div className='indicators'>
-        <OverallIndicator
+        {/*  <OverallIndicator
           metrics={[
             {
               label: 'Infectados',
@@ -59,23 +62,22 @@ const CountryOverview = ({ className, cases }) => {
               }
             }
           ]}
-        ></OverallIndicator>
-        <Indicator
-          type='success'
-          label='Curados'
-          value={cases?.recovered?.value}
-        />
-        <Indicator type='info' label='Suspeitos' value={1530} />
-        <Indicator
-          type='warning'
-          label='Infectados'
-          value={cases?.confirmed?.value}
-        />
-        <Indicator
-          type='danger'
-          label='Fatalidades'
-          value={cases?.deaths?.value}
-        />
+        ></OverallIndicator> */}
+        <article className='impact-description'>
+          <Title.h2>Impacto Estimado</Title.h2>
+          <Text>
+            Ex do et fugiat ullamco enim laboris qui veniam sunt proident
+            adipisicing minim aliquip.
+          </Text>
+        </article>
+        {sectors.map(item => (
+          <Indicator
+            icon={<SectorIcon sector={item.id} />}
+            label={`${item.name}`}
+            value={item?.total_estimated_impact}
+          />
+        ))}
+
         <Text type='info' align='center'>
           Última atualização às{' '}
           {cases.lastUpdate
@@ -94,8 +96,8 @@ const CountryOverview = ({ className, cases }) => {
           </Title.h2>
 
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
-            lacinia turpis eget volutpat.
+            Escolha seu estado e veja quais serviços e estabelecimentos estão
+            funcionando na sua região.
           </Text>
         </article>
 

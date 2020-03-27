@@ -47,7 +47,9 @@ function saveEvents(state, action) {
 function saveSectors(state, action) {
   const { type, payload } = action;
 
-  const sortedSectors = payload.sort((a, b) => b.events_count - a.events_count);
+  const sortedSectors = payload.results.sort(
+    (a, b) => b.events_count - a.events_count
+  );
 
   debugger;
   return {
@@ -87,13 +89,13 @@ export function loadSectors(filters = {}) {
   };
 }
 
-export function loadEvents(sector, region) {
+export function loadEvents(sector, region, limit = 50) {
   return {
     type: LOAD_EVENTS,
     createRequest: {
       url: '/news/events/',
       filters: {
-        limit: 50,
+        limit,
         offset: 0,
         sector,
         region__initial: region
