@@ -26,15 +26,17 @@ const EventsOverview = ({ className, events, sectors }) => {
           {sectors.map(item => (
             <Event maxHeight={'500px'} sector={item.id} title={item.name}>
               {events?.[item.id] &&
-                events?.[item.id].results.map(item => (
-                  <Event.Item
-                    event={item}
-                    city={item?.city?.name}
-                    status={item.status_type}
-                    title={item.name}
-                    description={item?.text || item?.source?.text}
-                  ></Event.Item>
-                ))}
+                events?.[item.id].results
+                  .filter((_, idx) => idx < 6)
+                  .map(item => (
+                    <Event.Item
+                      event={item}
+                      city={item?.city?.name}
+                      status={item.status_type}
+                      title={item.name}
+                      description={item?.text || item?.source?.text}
+                    ></Event.Item>
+                  ))}
             </Event>
           ))}
         </section>
