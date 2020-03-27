@@ -1,28 +1,31 @@
 import styled, { css } from 'styled-components';
 
 const style = ({ theme }) => css`
-  width: 100%;
-  height: 120px;
-  display: flex;
   align-items: center;
   background-color: #fff;
-
+  margin-top:30px;
   .container {
     ${theme.container}
-
+    ${theme.paddings.containerPadding}
     .group {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-
-      float: left;
-
-      .indicator {
-        flex: 0.18;
+      display:grid;
+      gap:30px;
+      grid-template-columns:repeat(2,1fr);
+      @media only screen and ${theme.device.mobileL} {
+        grid-template-columns:repeat(3,1fr);  
       }
-
+      @media only screen and ${theme.device.tablet} {
+        grid-template-columns:repeat(5,1fr);
+        
+      }
       .ant-select {
-        flex: 0.35;
+        grid-column: span 2;
+        @media only screen and ${theme.device.mobileL} {
+        grid-column: span 3;
+      }
+        @media only screen and ${theme.device.tablet} {
+          grid-column: span 2;
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
-import { success } from '../../helpers/redux/actions';
 import { createSelector } from 'reselect';
+import { success } from '../../helpers/redux/actions';
 
 // action types
 export const LOAD_SECTORS = 'LOAD_SECTORS';
@@ -51,7 +51,7 @@ function saveSectors(state, action) {
     (a, b) => b.events_count - a.events_count
   );
 
-  debugger;
+  // debugger;
   return {
     ...state,
     sectors: sortedSectors,

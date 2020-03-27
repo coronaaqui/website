@@ -1,17 +1,10 @@
+import { CheckOutlined, ClockCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined, LinkOutlined, NotificationOutlined } from '@ant-design/icons';
+import { Popover, Timeline } from 'antd';
+import moment from 'moment';
 import React from 'react';
+import { SectorIcon } from '../SectorIcon';
 import { Text } from '../Typography';
 import { eventWithStyle } from './Event.styles';
-import { Timeline, Popover } from 'antd';
-import {
-  CheckOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  LinkOutlined,
-  NotificationOutlined
-} from '@ant-design/icons';
-import { SectorIcon } from '../SectorIcon';
-import moment from 'moment';
 
 function formatDate(date) {
   return moment(date).format('DD.MM.YY');
@@ -62,38 +55,38 @@ const EventItem = ({
               </div>
             }
           >
-            <div className='info'>
+            <span className='info'>
               <NotificationOutlined />
-              <p>{author.name}</p>
-            </div>
+              <span>{author.name}</span>
+            </span>
           </Popover>
         )}
       </div>
       <div className='meta'>
-        <Popover content={<div style={{ textAlign: 'center' }}>{title}</div>}>
-          <div className='label'>{title} - </div>
+        <Popover content={<span style={{ textAlign: 'center' }}>{title}</span>}>
+          <span className='label'>{title} - </span>
         </Popover>
-        <div className='status'>{statusMessages.message} - </div>
+        <span className='status'>{statusMessages.message} - </span>
         {(event.from_date !== null || event.to_date !== null) && (
           <Popover
-            content={<div>Período de vigência do evento em questão.</div>}
+            content={<span>Período de vigência do evento em questão.</span>}
           >
-            <div className='info'>
+            <span className='info'>
               <ClockCircleOutlined />
-              <p>
+              <span>
                 {event.undefined_ends_date && 'A partir de '}
                 {event.from_date && formatDate(event.from_date)}
                 {event.to_date && ` - ${formatDate(event.to_date)}`}
-              </p>
-            </div>
+              </span>
+            </span>
           </Popover>
         )}
 
         {event?.source?.source && (
-          <div className='info'>
+          <span className='info'>
             <LinkOutlined />
-            <p>Fonte: {event.source.source}</p>
-          </div>
+            <span>Fonte: {event.source.source}</span>
+          </span>
         )}
       </div>
       <Text>{description}</Text>

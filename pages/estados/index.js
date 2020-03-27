@@ -1,38 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/router';
+import { GlobalOutlined, InstagramOutlined, SearchOutlined, TwitterOutlined } from '@ant-design/icons';
+import { Badge, Checkbox, Empty, Input, List } from 'antd';
 import Head from 'next/head';
-import { Reset } from '../../src/components/elements/Reset';
-import { Header } from '../../src/components/elements/Header';
-import { Indicator } from '../../src/components/elements/Indicator';
-import { RegionSelect } from '../../src/components/elements/RegionSelect';
-import { RegionOverview } from '../../src/components/containers/RegionOverview';
-import { regions } from '../../src/resources/regions';
-import { RegionProvider } from '../../src/hooks/regions';
-import { Event } from '../../src/components/elements/Event';
-import { Container } from '../../src/components/elements/Container';
-import { Title, Text, Dot } from '../../src/components/elements/Typography';
-import { regionWithStyle } from '../../src/components/containers/RegionPage/RegionPage.styles';
-import {
-  GlobalOutlined,
-  TwitterOutlined,
-  InstagramOutlined,
-  SearchOutlined
-} from '@ant-design/icons';
-import { Input, List, Checkbox, Badge, Empty, Spin } from 'antd';
-import { Footer } from '../../src/components/elements/Footer';
+import { useRouter } from 'next/router';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  loadSectors,
-  getSectors,
-  LOAD_SECTORS,
-  selectSector,
-  loadEvents,
-  getLastCheck,
-  getEvents,
-  getSelectedSectors
-} from '../../src/redux/services/events';
-import { createLoadingSelector } from '../../src/helpers/redux/requests';
+import { RegionOverview } from '../../src/components/containers/RegionOverview';
+import { regionWithStyle } from '../../src/components/containers/RegionPage/RegionPage.styles';
+import { Event } from '../../src/components/elements/Event';
+import { Footer } from '../../src/components/elements/Footer';
+import { Header } from '../../src/components/elements/Header';
+import { Reset } from '../../src/components/elements/Reset';
 import { SectorIcon } from '../../src/components/elements/SectorIcon';
+import { Dot, Text, Title } from '../../src/components/elements/Typography';
+import { createLoadingSelector } from '../../src/helpers/redux/requests';
+import { RegionProvider } from '../../src/hooks/regions';
+import { getEvents, getLastCheck, getSectors, getSelectedSectors, loadEvents, loadSectors, LOAD_SECTORS, selectSector } from '../../src/redux/services/events';
+import { regions } from '../../src/resources/regions';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
@@ -123,8 +106,8 @@ export const Estado = regionWithStyle(({ uf, className }) => {
           </Title.h1>
           <div className='contact'>
             <div className='phone'>
-              <p className='label'>Ouvidoria: </p>
-              (011 1231231)
+              <span className='label'>Ouvidoria: </span>
+              <a href="tel:+550111231231">(011) 1231-1231</a>
             </div>
 
             <div className='social'>

@@ -12,13 +12,10 @@ const styles = ({ scroll = true, maxHeight = '700px', theme }) => css`
 
     ${scroll &&
       `
-    max-height: ${maxHeight};
-    overflow-y: auto;
+      max-height: ${maxHeight};
+      overflow-y: auto;
     `}
-  
     .city {
-      display: flex;
-
       .info {
         margin-left: 10px;
         font-weight: lighter;
@@ -26,7 +23,6 @@ const styles = ({ scroll = true, maxHeight = '700px', theme }) => css`
     }
 
     .meta {
-      display: flex;
     }
 
     .status {
@@ -34,11 +30,8 @@ const styles = ({ scroll = true, maxHeight = '700px', theme }) => css`
     }
     
     .info {
-      display:flex;
       margin-right: 14px;
       align-items: center;
-      width: fit-content;
-
       p {
         max-width: 140px;
         ${theme.typography.truncate}

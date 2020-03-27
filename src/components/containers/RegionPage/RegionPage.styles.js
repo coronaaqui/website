@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Event } from '../../elements/Event';
 
 const menuHeight = '80vh';
 
@@ -9,6 +8,8 @@ const style = ({ theme }) => css`
   .description,
   .events {
     ${theme.container}
+    ${theme.paddings.containerPadding}
+
   }
 
   .description {
@@ -17,27 +18,29 @@ const style = ({ theme }) => css`
   }
 
   .events {
-    display: flex;
-    justify-content: space-between;
     min-height: 95vh;
-
+    gap:70px;
+    grid-template-columns:1fr;
+    @media only screen and ${theme.device.laptop} {
+      display:grid;
+      grid-template-columns: 300px auto;
+    }
     .event {
       padding: 30px 35px;
       background: #fff;
       ${theme.borders.default}
     }
 
-    .events__group {
-      width: calc(95% - 300px);
-    }
-
     .events__menu {
-      width: 300px;
       background: #fff;
-      height: ${menuHeight};
-
       ${theme.shadows.default}
-
+      height:300px;
+      overflow:hidden;
+      margin-bottom: 30px;
+      @media only screen and ${theme.device.laptop} {
+        height: ${menuHeight};
+        overflow:unset;
+      }
       .ant-badge {
         margin-top: 4px;
         float: right;
@@ -53,7 +56,10 @@ const style = ({ theme }) => css`
         height: 100%;
 
         .list-container {
-          height: calc(${menuHeight} - 104px);
+          height: calc(300px - 104px);
+          @media only screen and ${theme.device.laptop} {
+            height: calc(${ menuHeight } - 104px);
+          }
           overflow-y: auto;
          
         }
@@ -109,11 +115,8 @@ const style = ({ theme }) => css`
     }
   }
   .contact {
-    display: flex;
-    width: 18vw;
-    justify-content: space-between;
     margin: 22px 0;
-
+    margin-bottom: 0;
     .phone {
       .label {
         margin-right: 5px;
@@ -121,11 +124,12 @@ const style = ({ theme }) => css`
         float: left;
       }
     }
-
     .social {
-      width: 5vw;
-      display: flex;
-      justify-content: space-between;
+      padding: 10px 0;
+      margin: 0 -5px;
+      a{
+        padding:5px;
+      }
     }
   }
 `;
