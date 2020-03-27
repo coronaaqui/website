@@ -5,8 +5,10 @@ import { createSelector } from 'reselect';
 export const LOAD_SECTORS = 'LOAD_SECTORS';
 export const SET_SELECTED_SECTORS = 'SET_SELECTED_SECTORS';
 export const LOAD_EVENTS = 'LOAD_EVENTS';
+export const LOAD_REGIONS = 'LOAD_REGIONS';
 
 const initialState = {
+  regions: [],
   sectors: [],
   events: {},
   selectedSectors: {},
@@ -62,8 +64,18 @@ function saveSectors(state, action) {
     )
   };
 }
+
+function saveRegions(state, action) {
+  return {
+    ...state,
+    regions: action.payload
+  };
+}
+
 export function eventsReducer(state = initialState, action) {
   switch (action.type) {
+    case success(LOAD_REGIONS):
+      return saveRegions(state, action);
     case success(LOAD_SECTORS):
       return saveSectors(state, action);
 
@@ -79,6 +91,15 @@ export function eventsReducer(state = initialState, action) {
 }
 
 // actions
+export function loadRegions() {
+  return {
+    type: LOAD_REGIONS,
+    createRequest: {
+      url: '/places/regions/'
+    }
+  };
+}
+
 export function loadSectors(filters = {}) {
   return {
     createRequest: {
@@ -130,4 +151,9 @@ export const getEvents = createSelector(
 export const getSelectedSectors = createSelector(
   globalState => globalState.eventsReducer,
   state => state.selectedSectors
+);
+
+export const getRegions = (region) => createSelector(
+  globalState => globalState.eventsReducer,
+  state => state.regions.filter(item => item.initial.toLowerCase() === region.toLowerCase())[0]
 );

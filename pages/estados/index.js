@@ -29,7 +29,9 @@ import {
   loadEvents,
   getLastCheck,
   getEvents,
-  getSelectedSectors
+  getSelectedSectors,
+  getRegions,
+  loadRegions
 } from '../../src/redux/services/events';
 import { createLoadingSelector } from '../../src/helpers/redux/requests';
 import { SectorIcon } from '../../src/components/elements/SectorIcon';
@@ -45,6 +47,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   const lastCheck = useSelector(getLastCheck);
   const loading = useSelector(createLoadingSelector([LOAD_SECTORS]));
   const selectedSectors = useSelector(getSelectedSectors);
+  const regionInfo = useSelector(getRegions(uf));
 
   const [categoryFilter, setCategoryFilter] = useState(false);
   const currRegion =
@@ -56,6 +59,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   };
 
   useEffect(() => {
+    dispatch(loadRegions(uf));
     dispatch(
       loadSectors({
         ordering: 'events_count',
@@ -122,29 +126,36 @@ export const Estado = regionWithStyle(({ uf, className }) => {
             <Dot type='dark' />
           </Title.h1>
           <div className='contact'>
-            <div className='phone'>
-              <p className='label'>Ouvidoria: </p>
-              (011 1231231)
-            </div>
+            {regionInfo?.phone && (
+              <div className='phone'>
+                <p className='label'>Ouvidoria: </p>
+                {regionInfo?.phone}
+              </div>
+            )}
 
             <div className='social'>
-              <a>
-                <TwitterOutlined />
-              </a>
-              <a>
-                <InstagramOutlined />
-              </a>
-              <a>
-                <GlobalOutlined />
-              </a>
+              {regionInfo?.twitter && (
+                <a target='__blank' href={regionInfo?.twitter}>
+                  <TwitterOutlined />
+                </a>
+              )}
+              {regionInfo?.instagram && (
+                <a target='__blank' href={regionInfo?.instagram}>
+                  <InstagramOutlined />
+                </a>
+              )}
+              {regionInfo?.official_site && (
+                <a target='__blank' href={regionInfo?.official_site}>
+                  <GlobalOutlined />
+                </a>
+              )}
             </div>
           </div>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            eget justo ligula. Class aptent taciti sociosqu ad litora torquent
-            per conubia nostra, per inceptos himenaeos. Nullam sagittis
-            vulputate magna nec vulputate. Ut posuere, eros ut aliquam
-            imperdiet, nibh lectus eleifend lectus, in tincidunt
+            O funcionamento de transportes públicos, bares, restaurantes,
+            mercados, farmácias, padarias e outros estabelecimentos está mudando
+            a cada semana, em cada estado ou cidade.<br /> Confira o que está
+            funcionando no Brasil, até quando e por quê.
           </Text>
         </article>
 
