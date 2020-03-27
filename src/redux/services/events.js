@@ -7,59 +7,65 @@ export const SET_SELECTED_SECTORS = 'SET_SELECTED_SECTORS';
 export const LOAD_EVENTS = 'LOAD_EVENTS';
 
 const initialState = {
-  sectors: {},
-  selectedSectors: []
+  sectors: [],
+  events: {},
+  selectedSectors: {},
+  lastCheck: null
 };
 
 function select(state, action) {
-  const { sectors } = state;
+  const { selectedSectors } = state;
   const { sectorId } = action.payload;
-  const currSector = sectors?.[sectorId];
-
-  debugger;
+  const currSector = selectedSectors?.[sectorId];
 
   return {
-    sectors: {
-      ...state.sectors,
-      [sectorId]: {
-        ...currSector,
-        checked: currSector.checked !== undefined ? !currSector.checked : true
-      }
+    ...state,
+    lastCheck: sectorId,
+    selectedSectors: {
+      ...state.selectedSectors,
+      [sectorId]: currSector ? !currSector : true
     }
   };
 }
 
 function saveEvents(state, action) {
-  debugger;
   const {
     payload,
     filters: { sector }
   } = action;
-  const currSector = state.sectors?.[sector];
-  debugger;
+
   return {
-    sectors: {
-      ...state.sectors,
-      [sector]: {
-        ...currSector,
-        data: payload
-      }
+    ...state,
+    lastCheck: null,
+    events: {
+      ...state.events,
+      [sector]: payload
     }
   };
 }
-export function eventsReducer(state = initialState, action) {
+
+function saveSectors(state, action) {
   const { type, payload } = action;
 
+  const sortedSectors = payload.results.sort(
+    (a, b) => b.events_count - a.events_count
+  );
+
   debugger;
-  switch (type) {
+  return {
+    ...state,
+    sectors: sortedSectors,
+    selectedSectors: Object.assign(
+      ...sortedSectors
+        .filter((_, idx) => idx < 4)
+        .map(item => ({ [item.id]: true }))
+    )
+  };
+}
+export function eventsReducer(state = initialState, action) {
+  switch (action.type) {
     case success(LOAD_SECTORS):
-      debugger;
-      return {
-        ...state,
-        sectors: Object.assign(
-          ...payload.map(item => ({ [item.id]: { ...item, checked: false } }))
-        )
-      };
+      return saveSectors(state, action);
 
     case success(LOAD_EVENTS):
       return saveEvents(state, action);
@@ -83,13 +89,13 @@ export function loadSectors(filters = {}) {
   };
 }
 
-export function loadEvents(sector, region) {
+export function loadEvents(sector, region, limit = 50) {
   return {
     type: LOAD_EVENTS,
     createRequest: {
       url: '/news/events/',
       filters: {
-        limit: 5,
+        limit,
         offset: 0,
         sector,
         region__initial: region
@@ -108,10 +114,20 @@ export function selectSector(sectorId) {
 // selectors
 export const getSectors = createSelector(
   globalState => globalState.eventsReducer,
-  state =>
-    Object.keys(state.sectors).length
-      ? Object.keys(state.sectors)
-          .map(key => state.sectors[key])
-          .sort((a, b) => b.events_count - a.events_count)
-      : []
+  state => state.sectors
+);
+
+export const getLastCheck = createSelector(
+  globalState => globalState.eventsReducer,
+  state => state.lastCheck
+);
+
+export const getEvents = createSelector(
+  globalState => globalState.eventsReducer,
+  state => state.events
+);
+
+export const getSelectedSectors = createSelector(
+  globalState => globalState.eventsReducer,
+  state => state.selectedSectors
 );

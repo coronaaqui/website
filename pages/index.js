@@ -6,9 +6,20 @@ import { EventsOverview } from '../src/components/containers/EventsOverview';
 import { Footer } from '../src/components/elements/Footer';
 import { Header } from '../src/components/elements/Header';
 import { Reset } from '../src/components/elements/Reset';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  loadSectors,
+  loadEvents,
+  getSectors,
+  getEvents
+} from '../src/redux/services/events';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
   const [cases, setCases] = useState({});
+  const sectors = useSelector(getSectors);
+  const events = useSelector(getEvents);
 
   async function fetchCases() {
     try {
@@ -23,7 +34,17 @@ const Home = () => {
 
   useEffect(() => {
     fetchCases();
+    dispatch(loadSectors({ ordering: 'total_estimated_impact', limit: 4 }));
   }, []);
+
+  useEffect(() => {
+    console.log('##sectors');
+    if (!sectors.length) return;
+
+    for (let sector of sectors) {
+      dispatch(loadEvents(sector.id));
+    }
+  }, [sectors]);
 
   return (
     <div className='container'>
@@ -34,8 +55,8 @@ const Home = () => {
       </Head>
 
       <Header />
-      <CountryOverview cases={cases} />
-      <EventsOverview />
+      <CountryOverview sectors={sectors} cases={cases} />
+      <EventsOverview sectors={sectors} events={events} />
       <Footer />
     </div>
   );

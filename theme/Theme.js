@@ -103,7 +103,10 @@ const typography = {
     lg: `
       font-size: 16px;
     `
-  }
+  },
+  truncate: `white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;`
 };
 const paddings = {
   base: `1rem`,

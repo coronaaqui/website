@@ -1,17 +1,24 @@
 import React from 'react';
 import { Text } from '../Typography';
 import { eventWithStyle } from './Event.styles';
-import { Timeline } from 'antd';
+import { Timeline, Popover } from 'antd';
 import {
-  CloseOutlined,
   CheckOutlined,
-  ExclamationOutlined,
   CloseCircleOutlined,
-  ExclamationCircleOutlined
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+  LinkOutlined,
+  NotificationOutlined
 } from '@ant-design/icons';
+import { SectorIcon } from '../SectorIcon';
+import moment from 'moment';
 
-const EventItem = ({ city, status = 'F', title, description }) => {
-  const statusMessages = {
+function formatDate(date) {
+  return moment(date).format('DD.MM.YY');
+}
+
+const messages = status =>
+  ({
     F: {
       message: 'Acesso Bloqueado',
       icon: <CloseCircleOutlined />
@@ -24,7 +31,17 @@ const EventItem = ({ city, status = 'F', title, description }) => {
       message: 'Acesso Liberado',
       icon: <CheckOutlined />
     }
-  }[status];
+  }[status]);
+
+const EventItem = ({
+  city = 'Em todo o estado',
+  status = 'F',
+  title,
+  description,
+  event
+}) => {
+  const { author } = event;
+  const statusMessages = messages(status);
 
   return (
     <Timeline.Item
@@ -32,26 +49,71 @@ const EventItem = ({ city, status = 'F', title, description }) => {
       dot={statusMessages.icon}
       color={statusMessages.color}
     >
-    {city &&  <span className='city'>
+      <div className='city'>
         {city}
-      </span>}
-      <p>
-        <span className='label'>{title} - </span> {statusMessages.message}
-      </p>
+        {event?.region?.initial && ` - ${event?.region?.initial}`}
+        {author && author?.name && (
+          <Popover
+            content={
+              <div style={{ textAlign: 'center' }}>
+                Evento criado por {author?.name}. <br />
+                <a>Clique aqui</a> para fazer parte de nossa equipe de
+                colaboradores.
+              </div>
+            }
+          >
+            <div className='info'>
+              <NotificationOutlined />
+              <p>{author.name}</p>
+            </div>
+          </Popover>
+        )}
+      </div>
+      <div className='meta'>
+        <Popover content={<div style={{ textAlign: 'center' }}>{title}</div>}>
+          <div className='label'>{title} - </div>
+        </Popover>
+        <div className='status'>{statusMessages.message} - </div>
+        {(event.from_date !== null || event.to_date !== null) && (
+          <Popover
+            content={<div>Período de vigência do evento em questão.</div>}
+          >
+            <div className='info'>
+              <ClockCircleOutlined />
+              <p>
+                {event.undefined_ends_date && 'A partir de '}
+                {event.from_date && formatDate(event.from_date)}
+                {event.to_date && ` - ${formatDate(event.to_date)}`}
+              </p>
+            </div>
+          </Popover>
+        )}
+
+        {event?.source?.source && (
+          <div className='info'>
+            <LinkOutlined />
+            <p>Fonte: {event.source.source}</p>
+          </div>
+        )}
+      </div>
       <Text>{description}</Text>
-      <a>Ver mais</a>
+      {event.source?.link && (
+        <a href={event.source.link} target='__blank' alt={event.source.source}>
+          Ver mais
+        </a>
+      )}
     </Timeline.Item>
   );
 };
 
 const Event = eventWithStyle(
-  ({ region = 'BA', title, description, className, children }) => {
+  ({ region = 'BA', sector, title, description, className, children }) => {
     return (
       <div className={'event ' + className}>
         <div className='event__description'>
           <figure>
             <picture>
-              <img src='/static/airport.svg' />
+              <SectorIcon sector={sector} />
             </picture>
             <figcaption>
               <h2>{title}</h2>

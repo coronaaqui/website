@@ -3,25 +3,65 @@ import { Text } from '../Typography';
 
 const descriptionWidth = 65;
 
-const styles = ({ theme }) => css`
+const styles = ({ scroll = true, maxHeight = '700px', theme }) => css`
   margin: 0 0 20px;
 
   .ant-timeline {
     margin: 0;
+    padding: 4px;
 
-    .anticon {
+    ${scroll &&
+      `
+    max-height: ${maxHeight};
+    overflow-y: auto;
+    `}
+  
+    .city {
+      display: flex;
+
+      .info {
+        margin-left: 10px;
+        font-weight: lighter;
+      }
+    }
+
+    .meta {
+      display: flex;
+    }
+
+    .status {
+      margin-right: 14px;
+    }
+    
+    .info {
+      display:flex;
+      margin-right: 14px;
+      align-items: center;
+      width: fit-content;
+
+      p {
+        max-width: 140px;
+        ${theme.typography.truncate}
+      }
+
+      .anticon {
+        margin-right: 4px;
+      }
+    }
+
+    .ant-timeline-item-head .anticon {
       font-size: 18px;
     }
 
-    .F .anticon {
+    .F .ant-timeline-item-head .anticon {
       color: #ff3f3f;
     }
     
-    .P .anticon {
+    .P .ant-timeline-item-head .anticon {
       color: ${theme.colors.yellow.default};
     }
 
-    .O .anticon {
+    .O .ant-timeline-item-head .anticon {
       color: ${theme.colors.green.default};
     }
     
@@ -41,8 +81,10 @@ const styles = ({ theme }) => css`
 
     .ant-timeline-item-content {
       .label {
+        max-width: 240px;
         font-weight: 700;
         margin-right: 5px;
+        ${theme.typography.truncate}
       }
 
       ${Text} {

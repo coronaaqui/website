@@ -55,13 +55,7 @@ const style = ({ theme }) => css`
         .list-container {
           height: calc(${menuHeight} - 104px);
           overflow-y: auto;
-          .ant-list-item {
-            &:first-child {
-              .name {
-                font-weight: bolder;
-              }
-            }
-          }
+         
         }
 
         .ant-list-header {

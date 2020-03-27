@@ -26,6 +26,20 @@ ${theme.container}
   display:grid;
   gap:15px;
   grid-column:span 1;
+
+  .impact-description {
+    ${Title.h2} {
+      font-size: 16px;
+      font-weight: 100;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    ${Text} {
+      margin-bottom: 10px;
+    }
+  }
+
   @media only screen and ${theme.device.tablet}{
     grid-column:span 2;
     margin-bottom: 0;
