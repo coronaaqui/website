@@ -77,13 +77,6 @@ const CountryOverview = ({ className, sectors, cases }) => {
             value={item?.total_estimated_impact}
           />
         ))}
-
-        <Text type='info' align='center'>
-          Última atualização às{' '}
-          {cases.lastUpdate
-            ? moment(cases.lastUpdate).format('HH:mm - DD/MM/YYYY')
-            : '-'}
-        </Text>
       </div>
       <picture className='map'>
         <MapSvg />
