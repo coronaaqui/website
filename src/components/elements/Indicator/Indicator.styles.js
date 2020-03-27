@@ -15,7 +15,9 @@ export const indicatorWithStyle = component =>
       ${theme.shadows.default}
 
       .icon {
-        width: 30px;
+        img {
+          width: 30px;
+        }
       }
 
       .content {
