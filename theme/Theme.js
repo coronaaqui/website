@@ -128,11 +128,17 @@ const paddings = {
 
   containerPaddingTop: `
     padding-top: 2rem;
+    padding-bottom: 2rem;
 
     @media only screen and ${device.tablet}{
       padding-top: 5rem;
+      padding-bottom: 5rem;
     }
   `
+};
+
+const borders = {
+  default: `border: 1px solid ${colors.grey.default}`
 };
 
 const theme = {
@@ -144,7 +150,8 @@ const theme = {
   typography,
   paddings,
   device,
-  container
+  container,
+  borders
 };
 
 export const Theme = ({ children }) => {

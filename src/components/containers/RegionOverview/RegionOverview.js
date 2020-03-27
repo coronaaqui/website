@@ -46,14 +46,16 @@ const RegionOverview = ({ className }) => {
   return (
     <section className={'region-overview ' + className}>
       <div className='container'>
-        <Indicator type='warning' label='Infectados' value={cases?.cases} />
-        <Indicator type='info' label='Suspeitos' value={cases?.suspects} />
-        <Indicator type='danger' label='Fatalidades' value={cases?.deaths} />
+        <div className='group'>
+          <Indicator type='warning' label='Infectados' value={cases?.cases} />
+          <Indicator type='info' label='Suspeitos' value={cases?.suspects} />
+          <Indicator type='danger' label='Fatalidades' value={cases?.deaths} />
 
-        <RegionSelect
-          onSelect={handleRegionSelect}
-          defaultValue={currRegion?.name}
-        />
+          <RegionSelect
+            onSelect={handleRegionSelect}
+            defaultValue={currRegion?.name}
+          />
+        </div>
       </div>
     </section>
   );
