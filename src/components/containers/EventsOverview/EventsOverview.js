@@ -2,7 +2,6 @@ import { Timeline } from 'antd';
 import React from 'react';
 import { Dot, Text, Title } from '../../elements/Typography';
 import { eventsOverviewWithStyle } from './EventsOverview.styles';
-import { SectorIcon } from '../../elements/SectorIcon';
 import { Event } from '../../elements/Event';
 
 const EventsOverview = ({ className, events, sectors }) => {
@@ -29,6 +28,7 @@ const EventsOverview = ({ className, events, sectors }) => {
                   .filter((_, idx) => idx < 2)
                   .map(item => (
                     <Event.Item
+                    key={JSON.stringify(item)}
                       event={item}
                       city={item?.city?.name}
                       status={item.status_type}

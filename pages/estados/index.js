@@ -1,9 +1,13 @@
-import { GlobalOutlined, InstagramOutlined, SearchOutlined, TwitterOutlined } from '@ant-design/icons';
+import {
+  GlobalOutlined,
+  InstagramOutlined,
+  SearchOutlined,
+  TwitterOutlined
+} from '@ant-design/icons';
 import { Badge, Checkbox, Empty, Input, List } from 'antd';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { RegionOverview } from '../../src/components/containers/RegionOverview';
 import { regionWithStyle } from '../../src/components/containers/RegionPage/RegionPage.styles';
 import { Event } from '../../src/components/elements/Event';
@@ -27,9 +31,7 @@ import {
 import { createLoadingSelector } from '../../src/helpers/redux/requests';
 import { SectorIcon } from '../../src/components/elements/SectorIcon';
 import { Dot, Text, Title } from '../../src/components/elements/Typography';
-import { createLoadingSelector } from '../../src/helpers/redux/requests';
 import { RegionProvider } from '../../src/hooks/regions';
-import { getEvents, getLastCheck, getSectors, getSelectedSectors, loadEvents, loadSectors, LOAD_SECTORS, selectSector } from '../../src/redux/services/events';
 import { regions } from '../../src/resources/regions';
 
 function normalizeSearch(str) {
@@ -127,10 +129,10 @@ export const Estado = regionWithStyle(({ uf, className }) => {
           </Title.h1>
           <div className='contact'>
             {regionInfo?.phone && (
-               <div className='phone'>
-              <span className='label'>Ouvidoria: </span>
-              <a href=`tel:+55${regionInfo?.phone}`>{regionInfo?.phone}</a>
-            </div>
+              <div className='phone'>
+                <span className='label'>Ouvidoria: </span>
+                <a href={`tel:+55${regionInfo?.phone}`}>{regionInfo?.phone}</a>
+              </div>
             )}
             <div className='social'>
               {regionInfo?.twitter && (
@@ -183,7 +185,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
             >
               <div className='list-container'>
                 {categories.map(item => (
-                  <List.Item>
+                  <List.Item key={JSON.stringify(item)}>
                     <Checkbox
                       checked={!!selectedSectors?.[item.id]}
                       onChange={handleSectorCheck(item.id)}
@@ -202,7 +204,11 @@ export const Estado = regionWithStyle(({ uf, className }) => {
               <Empty description='Selecione uma categoria.' />
             )}
             {filteredCategories.map(item => (
-              <Event sector={item.id} title={item.name}>
+              <Event
+                key={JSON.stringify(item)}
+                sector={item.id}
+                title={item.name}
+              >
                 {events?.[item.id] && !events?.[item.id].results.length && (
                   <Empty
                     image={
@@ -223,6 +229,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                 {events?.[item.id] &&
                   events?.[item.id].results.map(item => (
                     <Event.Item
+                      key={JSON.stringify(item)}
                       event={item}
                       city={item?.city?.name}
                       status={item.status_type}
