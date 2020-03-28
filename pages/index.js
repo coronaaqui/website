@@ -11,7 +11,8 @@ import {
   loadSectors,
   loadEvents,
   getSectors,
-  getEvents
+  getEvents,
+  resetState
 } from '../src/redux/services/events';
 
 const Home = () => {
@@ -35,10 +36,13 @@ const Home = () => {
   useEffect(() => {
     fetchCases();
     dispatch(loadSectors({ ordering: 'total_estimated_impact', limit: 4 }));
+
+    return function cleanup() {
+      dispatch(resetState());
+    };
   }, []);
 
   useEffect(() => {
-    console.log('##sectors');
     if (!sectors.length) return;
 
     for (let sector of sectors) {

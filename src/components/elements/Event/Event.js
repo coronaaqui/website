@@ -31,7 +31,8 @@ const EventItem = ({
   status = 'F',
   title,
   description,
-  event
+  event,
+  hideAuthor = false
 }) => {
   const { author } = event;
   const statusMessages = messages(status);
@@ -45,7 +46,7 @@ const EventItem = ({
       <div className='city'>
         {city}
         {event?.region?.initial && ` - ${event?.region?.initial}`}
-        {author && author?.name && (
+        {author && !hideAuthor && author?.name && (
           <Popover
             content={
               <div style={{ textAlign: 'center' }}>

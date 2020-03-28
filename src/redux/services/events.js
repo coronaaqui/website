@@ -6,6 +6,7 @@ export const LOAD_SECTORS = 'LOAD_SECTORS';
 export const SET_SELECTED_SECTORS = 'SET_SELECTED_SECTORS';
 export const LOAD_EVENTS = 'LOAD_EVENTS';
 export const LOAD_REGIONS = 'LOAD_REGIONS';
+export const RESET_STATE = 'RESET_STATE';
 
 const initialState = {
   regions: [],
@@ -76,11 +77,15 @@ export function eventsReducer(state = initialState, action) {
   switch (action.type) {
     case success(LOAD_REGIONS):
       return saveRegions(state, action);
+
     case success(LOAD_SECTORS):
       return saveSectors(state, action);
 
     case success(LOAD_EVENTS):
       return saveEvents(state, action);
+
+    case RESET_STATE:
+      return initialState;
 
     case SET_SELECTED_SECTORS:
       return select(state, action);
@@ -132,6 +137,12 @@ export function selectSector(sectorId) {
   };
 }
 
+export function resetState() {
+  return {
+    type: RESET_STATE
+  }
+}
+
 // selectors
 export const getSectors = createSelector(
   globalState => globalState.eventsReducer,
@@ -153,7 +164,11 @@ export const getSelectedSectors = createSelector(
   state => state.selectedSectors
 );
 
-export const getRegions = (region) => createSelector(
-  globalState => globalState.eventsReducer,
-  state => state.regions.filter(item => item.initial.toLowerCase() === region.toLowerCase())[0]
-);
+export const getRegions = region =>
+  createSelector(
+    globalState => globalState.eventsReducer,
+    state =>
+      state.regions.filter(
+        item => item.initial.toLowerCase() === region.toLowerCase()
+      )[0]
+  );

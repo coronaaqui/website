@@ -41,7 +41,6 @@ const RegionOverview = ({ className }) => {
     fetchCases(currRegion?.initial);
   }, [currRegion]);
 
-  console.log('##cases', cases);
 
   return (
     <section className={'region-overview ' + className}>
