@@ -6,7 +6,6 @@ import { SectorIcon } from '../../elements/SectorIcon';
 import { Event } from '../../elements/Event';
 
 const EventsOverview = ({ className, events, sectors }) => {
-  console.log(events);
   return (
     <section className={'events-overview ' + className}>
       <div className='events-content'>
@@ -35,6 +34,7 @@ const EventsOverview = ({ className, events, sectors }) => {
                       status={item.status_type}
                       title={item.name}
                       description={item?.text || item?.source?.text}
+                      hideAuthor
                     ></Event.Item>
                   ))}
             </Event>

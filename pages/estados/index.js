@@ -31,7 +31,8 @@ import {
   getEvents,
   getSelectedSectors,
   getRegions,
-  loadRegions
+  loadRegions,
+  resetState
 } from '../../src/redux/services/events';
 import { createLoadingSelector } from '../../src/helpers/redux/requests';
 import { SectorIcon } from '../../src/components/elements/SectorIcon';
@@ -67,6 +68,10 @@ export const Estado = regionWithStyle(({ uf, className }) => {
         limit: 100
       })
     );
+
+    return function cleanup() {
+      dispatch(resetState());
+    };
   }, [uf]);
 
   useEffect(() => {
@@ -154,8 +159,9 @@ export const Estado = regionWithStyle(({ uf, className }) => {
           <Text>
             O funcionamento de transportes públicos, bares, restaurantes,
             mercados, farmácias, padarias e outros estabelecimentos está mudando
-            a cada semana, em cada estado ou cidade.<br /> Confira o que está
-            funcionando no Brasil, até quando e por quê.
+            a cada semana, em cada estado ou cidade.
+            <br /> Confira o que está funcionando no Brasil, até quando e por
+            quê.
           </Text>
         </article>
 
