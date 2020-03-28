@@ -64,8 +64,8 @@ const CountryOverview = ({ className, sectors, cases }) => {
         <article className='impact-description'>
           <Title.h2>Impacto Estimado</Title.h2>
           <Text>
-            Ex do et fugiat ullamco enim laboris qui veniam sunt proident
-            adipisicing minim aliquip.
+            Veja os serviços e estabelecimentos que foram impactados pelas ações
+            de isolamento e quarentena.
           </Text>
         </article>
         {sectors.map(item => (

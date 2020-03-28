@@ -3,7 +3,6 @@ import withRedux from 'next-redux-wrapper';
 import { Theme } from '../theme';
 import { Provider } from 'react-redux';
 import { configureStore } from '../src/redux/configureStore';
-
 import 'antd/lib/select/style/index.css';
 import 'antd/lib/style/index.css';
 import 'antd/lib/timeline/style/index.css';

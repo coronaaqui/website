@@ -33,6 +33,8 @@ import { SectorIcon } from '../../src/components/elements/SectorIcon';
 import { Dot, Text, Title } from '../../src/components/elements/Typography';
 import { RegionProvider } from '../../src/hooks/regions';
 import { regions } from '../../src/resources/regions';
+import { HeadTags } from '../../src/components/elements/HeadTags';
+import { initTracking } from '../../src/helpers/tracking';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
@@ -113,6 +115,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
     <div className={'estado-page ' + className}>
       <Reset />
       <Head>
+        <HeadTags />
         <title>Corona Brasil - {currRegion?.name}</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>

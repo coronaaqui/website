@@ -14,6 +14,7 @@ import {
   getEvents,
   resetState
 } from '../src/redux/services/events';
+import { HeadTags } from '../src/components/elements/HeadTags';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const Home = () => {
     <div className='container'>
       <Reset />
       <Head>
+        <HeadTags />
         <title>Corona Brasil</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
