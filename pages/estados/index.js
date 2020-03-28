@@ -34,6 +34,7 @@ import { Dot, Text, Title } from '../../src/components/elements/Typography';
 import { RegionProvider } from '../../src/hooks/regions';
 import { regions } from '../../src/resources/regions';
 import { HeadTags } from '../../src/components/elements/HeadTags';
+import { EVENTS_FORM } from '../../src/resources/links';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
@@ -222,7 +223,10 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                           Ooops, nenhuma informação sobre{' '}
                           <strong>{item.name}</strong> encontrada :/
                         </p>{' '}
-                        <a>Clique aqui para reportar qualquer informação.</a>
+                        <a target='__blank' href={EVENTS_FORM}>
+                          Você tem alguma informação? Ajude no combate à
+                          pandemia clicando aqui!
+                        </a>
                       </div>
                     }
                   />

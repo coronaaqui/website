@@ -3,6 +3,7 @@ import { Button } from '../Button';
 import { Logo } from '../Logo';
 import { Text, Title } from '../Typography';
 import { footerWithStyle } from './Footer.styles';
+import { COLABORADORES_FORM } from '../../../resources/links';
 
 const Footer = ({ className }) => {
   return (
@@ -35,9 +36,11 @@ const Footer = ({ className }) => {
           </div>
           <div className='col'>
             <Title.h2>Faça esse projeto crescer</Title.h2>
-            <Button type='primary' className='help-cta outline inverted'>
-              Ajude-nos
-            </Button>
+            <a target='__blank' href={COLABORADORES_FORM}>
+              <Button type='primary' className='help-cta outline inverted'>
+                Ajude-nos
+              </Button>
+            </a>
           </div>
         </div>
         <div className='copyright'>
