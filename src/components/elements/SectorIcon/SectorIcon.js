@@ -1,6 +1,6 @@
 import React from 'react';
 
-const defaultIcon = 'airport.svg';
+const defaultIcon = 'question.svg';
 
 const icons = {
   1: 'blocks.svg',
@@ -34,7 +34,10 @@ const icons = {
   30: 'coffin.svg',
   31: 'pray.svg',
   32: 'boat.svg',
-  33: 'football.svg'
+  33: 'football.svg',
+  35: 'water.svg',
+  34: 'electricity.svg',
+  36: 'police.svg'
 };
 
 const SectorIcon = ({ sector }) => {

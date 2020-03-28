@@ -56,7 +56,9 @@ const Home = () => {
       <Reset />
       <Head>
         <HeadTags />
-        <title>Corona Brasil</title>
+        <title>
+          Corona Brasil - Saiba o que está funcionando em sua cidade
+        </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 

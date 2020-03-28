@@ -34,7 +34,6 @@ import { Dot, Text, Title } from '../../src/components/elements/Typography';
 import { RegionProvider } from '../../src/hooks/regions';
 import { regions } from '../../src/resources/regions';
 import { HeadTags } from '../../src/components/elements/HeadTags';
-import { initTracking } from '../../src/helpers/tracking';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();

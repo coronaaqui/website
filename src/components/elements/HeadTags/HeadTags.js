@@ -44,6 +44,39 @@ const HeadTags = () => {
           `
         }}
       />
+
+      <meta
+        name='title'
+        content='Corona Brasil - Saiba o que está funcionando em sua cidade'
+      />
+      <meta
+        name='description'
+        content='Portal que reúne informações públicas essenciais que os cidadãos precisam para realizar atividades cotidianas. '
+      />
+
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content='https://coronabrasil.org/' />
+      <meta
+        property='og:title'
+        content='Corona Brasil - Saiba o que está funcionando em sua cidade'
+      />
+      <meta
+        property='og:description'
+        content='Portal que reúne informações públicas essenciais que os cidadãos precisam para realizar atividades cotidianas. '
+      />
+      <meta property='og:image' content='/static/banner.png' />
+
+      <meta property='twitter:card' content='summary_large_image' />
+      <meta property='twitter:url' content='https://coronabrasil.org/' />
+      <meta
+        property='twitter:title'
+        content='Corona Brasil - Saiba o que está funcionando em sua cidade'
+      />
+      <meta
+        property='twitter:description'
+        content='Portal que reúne informações públicas essenciais que os cidadãos precisam para realizar atividades cotidianas. '
+      />
+      <meta property='twitter:image' content='/static/banner.png' />
     </>
   );
 };
