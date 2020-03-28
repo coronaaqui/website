@@ -35,6 +35,7 @@ import { RegionProvider } from '../../src/hooks/regions';
 import { regions } from '../../src/resources/regions';
 import { HeadTags } from '../../src/components/elements/HeadTags';
 import { EVENTS_FORM } from '../../src/resources/links';
+import ReactGA from 'react-ga'
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
@@ -59,6 +60,9 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   };
 
   useEffect(() => {
+    ReactGA.initialize('UA-162087851-1')
+    ReactGA.pageview(document.location.pathname)
+
     dispatch(loadRegions(uf));
     dispatch(
       loadSectors({
@@ -122,6 +126,9 @@ export const Estado = regionWithStyle(({ uf, className }) => {
 
       <RegionProvider region={currRegion}>
         <Header />
+        <div className='alert'>
+        Você tem alguma informação sobre sua cidade/estado? <a href={EVENTS_FORM} target='__blank'>Ajude no combate à pandemia clicando aqui</a>!
+        </div>
 
         <RegionOverview />
 

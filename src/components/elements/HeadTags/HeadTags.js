@@ -14,7 +14,7 @@ const HeadTags = () => {
           `
         }}
       />
-      <script
+      {/* <script
         async
         src='https://www.googletagmanager.com/gtag/js?id=UA-162087851-1'
       />
@@ -28,7 +28,7 @@ const HeadTags = () => {
           gtag('config', 'UA-162087851-1');
           `
         }}
-      />
+      /> */}
       <script
         dangerouslySetInnerHTML={{
           __html: `

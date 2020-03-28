@@ -5,6 +5,20 @@ const menuHeight = '80vh';
 const style = ({ theme }) => css`
   background: ${theme.colors.grey.scales[0]};
 
+  .alert {
+    background: ${theme.colors.primary.default};
+    padding: 5px 0;
+    text-align: center;
+    font-weight: lighter;
+    color: #fff;
+    font-size: 15px;
+
+    a {
+      font-weight: 700;
+      color: #fff !important;
+    }
+  }
+  
   .description,
   .events {
     ${theme.container}

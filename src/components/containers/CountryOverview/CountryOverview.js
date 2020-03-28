@@ -34,7 +34,6 @@ const CountryOverview = ({ className, sectors, cases }) => {
     navigate(val);
   };
 
-  console.log('##global', global);
   return (
     <section className={'country-overview ' + className}>
       <div className='indicators'>
