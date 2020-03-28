@@ -3,6 +3,23 @@ import React from 'react';
 const HeadTags = () => {
   return (
     <>
+      <script src='https://cdn.onesignal.com/sdks/OneSignalSDK.js' async />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+          var OneSignal = window.OneSignal || [];
+          OneSignal.push(function() {
+            OneSignal.init({
+              appId: "3556d803-5a75-47b5-82ad-dec9dfd60e7a",
+              notifyButton: {
+                enable: true,
+              },
+            });
+          });
+          `
+        }}
+      />
+
       <script
         dangerouslySetInnerHTML={{
           __html: `
