@@ -13,7 +13,7 @@ const initialState = {
   sectors: [],
   events: {},
   selectedSectors: {},
-  lastCheck: null
+  lastCheck: null,
 };
 
 function select(state, action) {
@@ -26,15 +26,15 @@ function select(state, action) {
     lastCheck: sectorId,
     selectedSectors: {
       ...state.selectedSectors,
-      [sectorId]: currSector ? !currSector : true
-    }
+      [sectorId]: currSector ? !currSector : true,
+    },
   };
 }
 
 function saveEvents(state, action) {
   const {
     payload,
-    filters: { sector }
+    filters: { sector },
   } = action;
 
   return {
@@ -42,34 +42,30 @@ function saveEvents(state, action) {
     lastCheck: null,
     events: {
       ...state.events,
-      [sector]: payload
-    }
+      [sector]: payload,
+    },
   };
 }
 
 function saveSectors(state, action) {
   const { type, payload } = action;
 
-  const sortedSectors = payload.results.sort(
-    (a, b) => b.events_count - a.events_count
-  );
+  const sortedSectors = payload.results.sort((a, b) => b.events_count - a.events_count);
 
   // debugger;
   return {
     ...state,
     sectors: sortedSectors,
     selectedSectors: Object.assign(
-      ...sortedSectors
-        .filter((_, idx) => idx < 4)
-        .map(item => ({ [item.id]: true }))
-    )
+      ...sortedSectors.filter((_, idx) => idx < 4).map((item) => ({ [item.id]: true }))
+    ),
   };
 }
 
 function saveRegions(state, action) {
   return {
     ...state,
-    regions: action.payload
+    regions: action.payload,
   };
 }
 
@@ -100,8 +96,8 @@ export function loadRegions() {
   return {
     type: LOAD_REGIONS,
     createRequest: {
-      url: '/places/regions/'
-    }
+      url: '/places/regions/',
+    },
   };
 }
 
@@ -109,9 +105,9 @@ export function loadSectors(filters = {}) {
   return {
     createRequest: {
       url: '/organizations/sectors',
-      filters
+      filters,
     },
-    type: LOAD_SECTORS
+    type: LOAD_SECTORS,
   };
 }
 
@@ -124,51 +120,49 @@ export function loadEvents(sector, region, limit = 50) {
         limit,
         offset: 0,
         sector,
-        region__initial: region
-      }
-    }
+        region__initial: region,
+      },
+    },
   };
 }
 
 export function selectSector(sectorId) {
   return {
     type: SET_SELECTED_SECTORS,
-    payload: { sectorId }
+    payload: { sectorId },
   };
 }
 
 export function resetState() {
   return {
-    type: RESET_STATE
-  }
+    type: RESET_STATE,
+  };
 }
 
 // selectors
 export const getSectors = createSelector(
-  globalState => globalState.eventsReducer,
-  state => state.sectors
+  (globalState) => globalState.eventsReducer,
+  (state) => state.sectors
 );
 
 export const getLastCheck = createSelector(
-  globalState => globalState.eventsReducer,
-  state => state.lastCheck
+  (globalState) => globalState.eventsReducer,
+  (state) => state.lastCheck
 );
 
 export const getEvents = createSelector(
-  globalState => globalState.eventsReducer,
-  state => state.events
+  (globalState) => globalState.eventsReducer,
+  (state) => state.events
 );
 
 export const getSelectedSectors = createSelector(
-  globalState => globalState.eventsReducer,
-  state => state.selectedSectors
+  (globalState) => globalState.eventsReducer,
+  (state) => state.selectedSectors
 );
 
-export const getRegions = region =>
+export const getRegions = (region) =>
   createSelector(
-    globalState => globalState.eventsReducer,
-    state =>
-      state.regions.filter(
-        item => item.initial.toLowerCase() === region.toLowerCase()
-      )[0]
+    (globalState) => globalState.eventsReducer,
+    (state) =>
+      state.regions.filter((item) => item.initial.toLowerCase() === region.toLowerCase())[0]
   );

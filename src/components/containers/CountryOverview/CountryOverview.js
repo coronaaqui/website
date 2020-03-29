@@ -14,14 +14,10 @@ import { countryOverviewWithStyle } from './CountryOverview.styles';
 import { SectorIcon } from '../../elements/SectorIcon';
 
 const CountryOverview = ({ className, sectors, cases }) => {
-  const navigate = val => {
-    return Router.push(
-      `/estados?uf=${val.toLowerCase()}`,
-      `/estados/${val.toLowerCase()}`,
-      {
-        shallow: true
-      }
-    );
+  const navigate = (val) => {
+    return Router.push(`/estados?uf=${val.toLowerCase()}`, `/estados/${val.toLowerCase()}`, {
+      shallow: true,
+    });
   };
 
   const handleRegionSelect = (_, val) => {
@@ -29,7 +25,7 @@ const CountryOverview = ({ className, sectors, cases }) => {
     navigate(initial.toLowerCase());
   };
 
-  const handleRegionLink = val => ev => {
+  const handleRegionLink = (val) => (ev) => {
     ev.preventDefault();
     navigate(val);
   };
@@ -64,11 +60,11 @@ const CountryOverview = ({ className, sectors, cases }) => {
         <article className='impact-description'>
           <Title.h2>Impacto Estimado</Title.h2>
           <Text>
-            Veja os serviços e estabelecimentos que foram impactados pelas ações
-            de isolamento e quarentena.
+            Veja os serviços e estabelecimentos que foram impactados pelas ações de isolamento e
+            quarentena.
           </Text>
         </article>
-        {sectors.map(item => (
+        {sectors.map((item) => (
           <Indicator
             icon={<SectorIcon sector={item.id} />}
             label={`${item.name}`}
@@ -87,8 +83,8 @@ const CountryOverview = ({ className, sectors, cases }) => {
           </Title.h2>
 
           <Text>
-            Escolha seu estado e veja quais serviços e estabelecimentos estão
-            funcionando na sua região.
+            Escolha seu estado e veja quais serviços e estabelecimentos estão funcionando na sua
+            região.
           </Text>
         </article>
 

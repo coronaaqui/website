@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const flagWithStyle = component =>
+export const flagWithStyle = (component) =>
   styled(component)(
     ({ theme }) => css`
       float: left;

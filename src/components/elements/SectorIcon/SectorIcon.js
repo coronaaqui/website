@@ -37,7 +37,7 @@ const icons = {
   33: 'football.svg',
   35: 'water.svg',
   34: 'electricity.svg',
-  36: 'police.svg'
+  36: 'police.svg',
 };
 
 const SectorIcon = ({ sector }) => {

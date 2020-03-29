@@ -10,7 +10,7 @@ const size = {
   laptop: '1024px',
   laptopM: '1200px',
   laptopL: '1440px',
-  desktop: '2560px'
+  desktop: '2560px',
 };
 
 export const device = {
@@ -22,7 +22,7 @@ export const device = {
   laptopM: `(min-width: ${size.laptopM})`,
   laptopL: `(min-width: ${size.laptopL})`,
   desktop: `(min-width: ${size.desktop})`,
-  desktopL: `(min-width: ${size.desktop})`
+  desktopL: `(min-width: ${size.desktop})`,
 };
 const container = `
   margin: 0 auto;
@@ -34,52 +34,52 @@ const colors = {
   primary: {
     default: '#479A90',
     hover: '#1C3936',
-    dark: '#1C3936'
+    dark: '#1C3936',
   },
   secondary: {
     default: '',
-    hover: ''
+    hover: '',
   },
 
   // raw colors
   orange: {
-    default: '#D05D2B'
+    default: '#D05D2B',
   },
   yellow: {
-    default: '#EAC733'
+    default: '#EAC733',
   },
   green: {
-    default: '#16A870'
+    default: '#16A870',
   },
   blue: {
-    default: '#0477BF'
+    default: '#0477BF',
   },
   grey: {
     default: '#CCCCCC',
-    scales: ['#FCFCFC', '#F4F4F4', '#CCCCCC', '#BABABA']
+    scales: ['#FCFCFC', '#F4F4F4', '#CCCCCC', '#BABABA'],
   },
   black: {
-    default: '#000000'
-  }
+    default: '#000000',
+  },
 };
 
 const semanticColors = {
   success: {
-    default: colors.green.default
+    default: colors.green.default,
   },
   warning: {
-    default: colors.yellow.default
+    default: colors.yellow.default,
   },
   danger: {
-    default: colors.orange.default
+    default: colors.orange.default,
   },
   info: {
-    default: colors.blue.default
-  }
+    default: colors.blue.default,
+  },
 };
 const shadows = {
   lg: `box-shadow: 0px 0px 10px #0000001A;`,
-  default: `box-shadow: 0px 0px 10px #0000000D;`
+  default: `box-shadow: 0px 0px 10px #0000000D;`,
 };
 const typography = {
   titles: {
@@ -92,7 +92,7 @@ const typography = {
       font-size: 24px;
       font-weight: 600;
       color: ${colors.primary.dark}
-    `
+    `,
   },
   text: {
     sm: `
@@ -102,11 +102,11 @@ const typography = {
     `,
     lg: `
       font-size: 16px;
-    `
+    `,
   },
   truncate: `white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;`
+  text-overflow: ellipsis;`,
 };
 const paddings = {
   base: `1rem`,
@@ -137,24 +137,24 @@ const paddings = {
       padding-top: 5rem;
       padding-bottom: 5rem;
     }
-  `
+  `,
 };
 
 const borders = {
-  default: `border: 1px solid ${colors.grey.default}`
+  default: `border: 1px solid ${colors.grey.default}`,
 };
 
 const theme = {
   colors: {
     ...colors,
-    semantic: semanticColors
+    semantic: semanticColors,
   },
   shadows,
   typography,
   paddings,
   device,
   container,
-  borders
+  borders,
 };
 
 export const Theme = ({ children }) => {

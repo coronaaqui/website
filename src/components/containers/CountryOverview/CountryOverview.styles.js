@@ -145,4 +145,4 @@ ${theme.container}
 }
 `;
 
-export const countryOverviewWithStyle = component => styled(component)(style);
+export const countryOverviewWithStyle = (component) => styled(component)(style);

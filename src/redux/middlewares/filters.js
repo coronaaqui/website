@@ -11,13 +11,11 @@ function cleanObject(obj) {
 
 export function toQueryString(object) {
   const keys = Object.keys(object);
-  return keys.length
-    ? `?${keys.map(key => `${key}=${object[key].toString()}`).join('&')}`
-    : '';
+  return keys.length ? `?${keys.map((key) => `${key}=${object[key].toString()}`).join('&')}` : '';
 }
 
 export function filtersMiddleware() {
-  return next => action => {
+  return (next) => (action) => {
     if (!action.createRequest || !action.createRequest.filters) {
       return next(action);
     }
@@ -31,7 +29,7 @@ export function filtersMiddleware() {
           ...action.createRequest,
           url: `${url}${toQueryString(cleanObject(filters))}`,
         },
-        filters
+        filters,
       });
     } catch (e) {
       // let's keep it error-passive for now

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Logo } from '../Logo';
 
-export const headerWithStyle = component =>
+export const headerWithStyle = (component) =>
   styled(component)(
     ({ theme }) => css`
       position: relative;

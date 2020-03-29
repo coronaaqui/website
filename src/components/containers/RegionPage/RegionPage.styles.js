@@ -18,12 +18,11 @@ const style = ({ theme }) => css`
       color: #fff !important;
     }
   }
-  
+
   .description,
   .events {
     ${theme.container}
     ${theme.paddings.containerPadding}
-
   }
 
   .description {
@@ -33,10 +32,10 @@ const style = ({ theme }) => css`
 
   .events {
     min-height: 95vh;
-    gap:70px;
-    grid-template-columns:1fr;
+    gap: 70px;
+    grid-template-columns: 1fr;
     @media only screen and ${theme.device.laptop} {
-      display:grid;
+      display: grid;
       grid-template-columns: 300px auto;
     }
     .event {
@@ -49,11 +48,11 @@ const style = ({ theme }) => css`
       background: #fff;
       ${theme.shadows.default}
       height:300px;
-      overflow:hidden;
+      overflow: hidden;
       margin-bottom: 30px;
       @media only screen and ${theme.device.laptop} {
         height: ${menuHeight};
-        overflow:unset;
+        overflow: unset;
       }
       .ant-badge {
         margin-top: 4px;
@@ -72,10 +71,9 @@ const style = ({ theme }) => css`
         .list-container {
           height: calc(300px - 104px);
           @media only screen and ${theme.device.laptop} {
-            height: calc(${ menuHeight } - 104px);
+            height: calc(${menuHeight} - 104px);
           }
           overflow-y: auto;
-         
         }
 
         .ant-list-header {
@@ -141,11 +139,11 @@ const style = ({ theme }) => css`
     .social {
       padding: 10px 0;
       margin: 0 -5px;
-      a{
-        padding:5px;
+      a {
+        padding: 5px;
       }
     }
   }
 `;
 
-export const regionWithStyle = component => styled(component)(style);
+export const regionWithStyle = (component) => styled(component)(style);

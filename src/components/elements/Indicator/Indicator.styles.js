@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const indicatorWithStyle = component =>
+export const indicatorWithStyle = (component) =>
   styled(component)(
     ({ type = 'success', theme }) => css`
       /* display: flex;

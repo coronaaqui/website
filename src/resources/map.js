@@ -17,12 +17,7 @@ export const MapSvg = () => (
       </clipPath>
     </defs>
     <g id='Grupo_51' data-name='Grupo 51' transform='translate(-348.018 -100)'>
-      <g
-        id='Grupo_16'
-        data-name='Grupo 16'
-        transform='translate(348.018 100)'
-        opacity='0.38'
-      >
+      <g id='Grupo_16' data-name='Grupo 16' transform='translate(348.018 100)' opacity='0.38'>
         <path
           id='Caminho_2'
           data-name='Caminho 2'

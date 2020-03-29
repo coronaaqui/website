@@ -5,9 +5,7 @@ const initialState = {};
 
 export function requestsReducer(state = initialState, action) {
   const { type, actionKey = '' } = action;
-  const matches = new RegExp(`(.*)_(${LOADING}|${FAILURE}|${SUCCESS})`).exec(
-    type
-  );
+  const matches = new RegExp(`(.*)_(${LOADING}|${FAILURE}|${SUCCESS})`).exec(type);
 
   // not a *_LOADING / *_FAILURE actions, so we ignore them
   if (!matches) return state;
@@ -20,23 +18,19 @@ export function requestsReducer(state = initialState, action) {
     ...state,
     [requestName]: {
       phase: requestState,
-      ...errorMsg
-    }
+      ...errorMsg,
+    },
   };
 }
 
 // selectors
-const getLoading = actions => state => {
+const getLoading = (actions) => (state) => {
   const loadingState = actions
-    .filter(item => state[item])
-    .map(item => ({ [item]: state[item] }));
+    .filter((item) => state[item])
+    .map((item) => ({ [item]: state[item] }));
 
   return Object.keys(loadingState).length ? Object.assign(...loadingState) : {};
 };
 
 export const createLoadingSelector = (actions, ...args) =>
-  createSelector(
-    globalState => globalState.requestsReducer,
-    getLoading(actions),
-    ...args
-  );
+  createSelector((globalState) => globalState.requestsReducer, getLoading(actions), ...args);

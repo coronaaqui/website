@@ -25,14 +25,14 @@ const style = ({ size = 'md', type = 'primary', theme }) => {
             background-color:transparent;
           }
         }
-      `
+      `,
   };
 
   const sizes = {
     md: `
       width: 102px;
       height: 34px;
-    `
+    `,
   };
 
   return css`
@@ -49,4 +49,4 @@ const style = ({ size = 'md', type = 'primary', theme }) => {
   `;
 };
 
-export const buttonWithStyle = component => styled(component)(style);
+export const buttonWithStyle = (component) => styled(component)(style);

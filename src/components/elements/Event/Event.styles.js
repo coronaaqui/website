@@ -127,4 +127,4 @@ const styles = ({ scroll = true, maxHeight = '700px', theme }) => css`
     }
 `;
 
-export const eventWithStyle = component => styled(component)(styles);
+export const eventWithStyle = (component) => styled(component)(styles);

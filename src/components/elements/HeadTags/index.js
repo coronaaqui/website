@@ -1,1 +1,1 @@
-export { default as HeadTags} from './HeadTags'
+export { default as HeadTags } from './HeadTags';

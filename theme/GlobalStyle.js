@@ -29,8 +29,7 @@ const GlobalStyle = createGlobalStyle(
       border-right-width: 1px !important;
     }
 
-    .ant-select-focused.ant-select-single:not(.ant-select-customize-input)
-      .ant-select-selector {
+    .ant-select-focused.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
       border-color: ${theme.colors.primary.default} !important;
       border-right-width: 1px !important;
       outline: 0;

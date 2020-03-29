@@ -1,4 +1,11 @@
-import { CheckOutlined, ClockCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined, LinkOutlined, NotificationOutlined } from '@ant-design/icons';
+import {
+  CheckOutlined,
+  ClockCircleOutlined,
+  CloseCircleOutlined,
+  ExclamationCircleOutlined,
+  LinkOutlined,
+  NotificationOutlined,
+} from '@ant-design/icons';
 import { Popover, Timeline } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -10,20 +17,20 @@ function formatDate(date) {
   return moment(date).format('DD.MM.YY');
 }
 
-const messages = status =>
+const messages = (status) =>
   ({
     F: {
       message: 'Acesso Bloqueado',
-      icon: <CloseCircleOutlined />
+      icon: <CloseCircleOutlined />,
     },
     P: {
       message: 'Acesso Limitado',
-      icon: <ExclamationCircleOutlined />
+      icon: <ExclamationCircleOutlined />,
     },
     O: {
       message: 'Acesso Liberado',
-      icon: <CheckOutlined />
-    }
+      icon: <CheckOutlined />,
+    },
   }[status]);
 
 const EventItem = ({
@@ -32,17 +39,13 @@ const EventItem = ({
   title,
   description,
   event,
-  hideAuthor = false
+  hideAuthor = false,
 }) => {
   const { author } = event;
   const statusMessages = messages(status);
 
   return (
-    <Timeline.Item
-      className={status}
-      dot={statusMessages.icon}
-      color={statusMessages.color}
-    >
+    <Timeline.Item className={status} dot={statusMessages.icon} color={statusMessages.color}>
       <div className='city'>
         {city}
         {event?.region?.initial && ` - ${event?.region?.initial}`}
@@ -51,8 +54,7 @@ const EventItem = ({
             content={
               <div style={{ textAlign: 'center' }}>
                 Evento criado por {author?.name}. <br />
-                <a>Clique aqui</a> para fazer parte de nossa equipe de
-                colaboradores.
+                <a>Clique aqui</a> para fazer parte de nossa equipe de colaboradores.
               </div>
             }
           >
@@ -69,9 +71,7 @@ const EventItem = ({
         </Popover>
         <span className='status'>{statusMessages.message} - </span>
         {(event.from_date !== null || event.to_date !== null) && (
-          <Popover
-            content={<span>Período de vigência do evento em questão.</span>}
-          >
+          <Popover content={<span>Período de vigência do evento em questão.</span>}>
             <span className='info'>
               <ClockCircleOutlined />
               <span>

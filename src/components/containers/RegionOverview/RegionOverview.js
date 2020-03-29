@@ -41,7 +41,6 @@ const RegionOverview = ({ className }) => {
     fetchCases(currRegion?.initial);
   }, [currRegion]);
 
-
   return (
     <section className={'region-overview ' + className}>
       <div className='container'>
@@ -50,10 +49,7 @@ const RegionOverview = ({ className }) => {
           <Indicator type='info' label='Suspeitos' value={cases?.suspects} />
           <Indicator type='danger' label='Fatalidades' value={cases?.deaths} />
 
-          <RegionSelect
-            onSelect={handleRegionSelect}
-            defaultValue={currRegion?.name}
-          />
+          <RegionSelect onSelect={handleRegionSelect} defaultValue={currRegion?.name} />
         </div>
       </div>
     </section>

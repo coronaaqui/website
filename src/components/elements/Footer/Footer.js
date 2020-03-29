@@ -13,11 +13,10 @@ const Footer = ({ className }) => {
           <div className='col'>
             <Logo className='inverted' />
             <Text>
-              O Corona Brasil é um projeto voluntário, de código aberto. Nosso
-              objetivo é ajudar no combate à pandemia do novo coronavírus
-              reunindo as informações essenciais que os cidadãos precisam para
-              trabalhar, prestar e solicitar serviços, fazer compras e realizar
-              atividades cotidianas.
+              O Corona Brasil é um projeto voluntário, de código aberto. Nosso objetivo é ajudar no
+              combate à pandemia do novo coronavírus reunindo as informações essenciais que os
+              cidadãos precisam para trabalhar, prestar e solicitar serviços, fazer compras e
+              realizar atividades cotidianas.
             </Text>
           </div>
           <div className='col'>

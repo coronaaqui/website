@@ -1,1 +1,1 @@
-export { Reset } from './Reset'
+export { Reset } from './Reset';

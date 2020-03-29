@@ -6,4 +6,3 @@ const Container = styled.section`
 `;
 
 export default Container;
-

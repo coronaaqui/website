@@ -2,7 +2,7 @@ import {
   GlobalOutlined,
   InstagramOutlined,
   SearchOutlined,
-  TwitterOutlined
+  TwitterOutlined,
 } from '@ant-design/icons';
 import { Badge, Checkbox, Empty, Input, List } from 'antd';
 import Head from 'next/head';
@@ -26,7 +26,7 @@ import {
   getSelectedSectors,
   getRegions,
   loadRegions,
-  resetState
+  resetState,
 } from '../../src/redux/services/events';
 import { createLoadingSelector } from '../../src/helpers/redux/requests';
 import { SectorIcon } from '../../src/components/elements/SectorIcon';
@@ -35,7 +35,7 @@ import { RegionProvider } from '../../src/hooks/regions';
 import { regions } from '../../src/resources/regions';
 import { HeadTags } from '../../src/components/elements/HeadTags';
 import { EVENTS_FORM } from '../../src/resources/links';
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
@@ -51,24 +51,23 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   const regionInfo = useSelector(getRegions(uf));
 
   const [categoryFilter, setCategoryFilter] = useState(false);
-  const currRegion =
-    uf && regions.filter(item => item.initial === uf.toUpperCase())[0];
+  const currRegion = uf && regions.filter((item) => item.initial === uf.toUpperCase())[0];
 
-  const handleCategorySearch = ev => {
+  const handleCategorySearch = (ev) => {
     const { value } = ev.target;
     setCategoryFilter(value);
   };
 
   useEffect(() => {
-    ReactGA.initialize('UA-162087851-1')
-    ReactGA.pageview(document.location.pathname)
+    ReactGA.initialize('UA-162087851-1');
+    ReactGA.pageview(document.location.pathname);
 
     dispatch(loadRegions(uf));
     dispatch(
       loadSectors({
         ordering: 'events_count',
         region__initial: currRegion.initial,
-        limit: 100
+        limit: 100,
       })
     );
 
@@ -81,37 +80,30 @@ export const Estado = regionWithStyle(({ uf, className }) => {
     if (!sectors.length) return;
 
     if (!lastCheck) {
-      for (let sectorId of Object.keys(selectedSectors).filter(
-        key => !!selectedSectors[key]
-      )) {
+      for (let sectorId of Object.keys(selectedSectors).filter((key) => !!selectedSectors[key])) {
         dispatch(loadEvents(sectorId, currRegion?.initial));
       }
     }
 
-    if (selectedSectors[lastCheck])
-      dispatch(loadEvents(lastCheck, currRegion?.initial));
+    if (selectedSectors[lastCheck]) dispatch(loadEvents(lastCheck, currRegion?.initial));
   }, [selectedSectors]);
 
   const categories = categoryFilter
-    ? sectors.filter(item => {
-        return normalizeSearch(item.name).includes(
-          normalizeSearch(categoryFilter)
-        );
+    ? sectors.filter((item) => {
+        return normalizeSearch(item.name).includes(normalizeSearch(categoryFilter));
       })
     : sectors;
 
-  const categoriesList = categories.filter(item => selectedSectors[item.id]);
+  const categoriesList = categories.filter((item) => selectedSectors[item.id]);
 
   // doesnt reverse array if the
   // category wasnt checked from the ui
   const checkedFromUi = useMemo(() => {
     return !!lastCheck;
   }, [selectedSectors]);
-  const filteredCategories = checkedFromUi
-    ? categoriesList.reverse()
-    : categoriesList;
+  const filteredCategories = checkedFromUi ? categoriesList.reverse() : categoriesList;
 
-  const handleSectorCheck = sectorId => ev => {
+  const handleSectorCheck = (sectorId) => (ev) => {
     dispatch(selectSector(sectorId));
   };
 
@@ -127,7 +119,11 @@ export const Estado = regionWithStyle(({ uf, className }) => {
       <RegionProvider region={currRegion}>
         <Header />
         <div className='alert'>
-        Você tem alguma informação sobre sua cidade/estado? <a href={EVENTS_FORM} target='__blank'>Ajude no combate à pandemia clicando aqui</a>!
+          Você tem alguma informação sobre sua cidade/estado?{' '}
+          <a href={EVENTS_FORM} target='__blank'>
+            Ajude no combate à pandemia clicando aqui
+          </a>
+          !
         </div>
 
         <RegionOverview />
@@ -163,11 +159,9 @@ export const Estado = regionWithStyle(({ uf, className }) => {
             </div>
           </div>
           <Text>
-            O funcionamento de transportes públicos, bares, restaurantes,
-            mercados, farmácias, padarias e outros estabelecimentos está mudando
-            a cada semana, em cada estado ou cidade.
-            <br /> Confira o que está funcionando no Brasil, até quando e por
-            quê.
+            O funcionamento de transportes públicos, bares, restaurantes, mercados, farmácias,
+            padarias e outros estabelecimentos está mudando a cada semana, em cada estado ou cidade.
+            <br /> Confira o que está funcionando no Brasil, até quando e por quê.
           </Text>
         </article>
 
@@ -189,12 +183,10 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                 </>
               }
               bordered
-              loading={
-                loading?.[LOAD_SECTORS]?.phase === 'LOADING' || !sectors.length
-              }
+              loading={loading?.[LOAD_SECTORS]?.phase === 'LOADING' || !sectors.length}
             >
               <div className='list-container'>
-                {categories.map(item => (
+                {categories.map((item) => (
                   <List.Item key={JSON.stringify(item)}>
                     <Checkbox
                       checked={!!selectedSectors?.[item.id]}
@@ -210,29 +202,19 @@ export const Estado = regionWithStyle(({ uf, className }) => {
             </List>
           </div>
           <div className='events__group'>
-            {!filteredCategories.length && (
-              <Empty description='Selecione uma categoria.' />
-            )}
-            {filteredCategories.map(item => (
-              <Event
-                key={JSON.stringify(item)}
-                sector={item.id}
-                title={item.name}
-              >
+            {!filteredCategories.length && <Empty description='Selecione uma categoria.' />}
+            {filteredCategories.map((item) => (
+              <Event key={JSON.stringify(item)} sector={item.id} title={item.name}>
                 {events?.[item.id] && !events?.[item.id].results.length && (
                   <Empty
-                    image={
-                      <img width={150} src='/static/icons/loudspeaker.svg' />
-                    }
+                    image={<img width={150} src='/static/icons/loudspeaker.svg' />}
                     description={
                       <div>
                         <p>
-                          Ooops, nenhuma informação sobre{' '}
-                          <strong>{item.name}</strong> encontrada :/
+                          Ooops, nenhuma informação sobre <strong>{item.name}</strong> encontrada :/
                         </p>{' '}
                         <a target='__blank' href={EVENTS_FORM}>
-                          Você tem alguma informação? Ajude no combate à
-                          pandemia clicando aqui!
+                          Você tem alguma informação? Ajude no combate à pandemia clicando aqui!
                         </a>
                       </div>
                     }
@@ -240,7 +222,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
                 )}
 
                 {events?.[item.id] &&
-                  events?.[item.id].results.map(item => (
+                  events?.[item.id].results.map((item) => (
                     <Event.Item
                       key={JSON.stringify(item)}
                       event={item}

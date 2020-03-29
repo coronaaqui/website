@@ -2,111 +2,111 @@ export const sectors = [
   {
     id: 23,
     total_estimated_impact: 2,
-    name: 'Transportes'
+    name: 'Transportes',
   },
   {
     id: 5,
     total_estimated_impact: 1,
-    name: 'Rodoviárias'
+    name: 'Rodoviárias',
   },
   {
     id: 15,
     total_estimated_impact: 1,
-    name: 'Shoppings'
+    name: 'Shoppings',
   },
   {
     id: 22,
     total_estimated_impact: 0,
-    name: 'Aplicativos de transporte'
+    name: 'Aplicativos de transporte',
   },
   {
     id: 16,
     total_estimated_impact: 0,
-    name: 'Bancos'
+    name: 'Bancos',
   },
   {
     id: 7,
     total_estimated_impact: 0,
-    name: 'Bares'
+    name: 'Bares',
   },
   {
     id: 1,
     total_estimated_impact: 0,
-    name: 'Construção Civil'
+    name: 'Construção Civil',
   },
   {
     id: 11,
     total_estimated_impact: 0,
-    name: 'Creches'
+    name: 'Creches',
   },
   {
     id: 9,
     total_estimated_impact: 0,
-    name: 'Escolas'
+    name: 'Escolas',
   },
   {
     id: 2,
     total_estimated_impact: 0,
-    name: 'Farmácias'
+    name: 'Farmácias',
   },
   {
     id: 3,
     total_estimated_impact: 0,
-    name: 'Hospitais'
+    name: 'Hospitais',
   },
   {
     id: 14,
     total_estimated_impact: 0,
-    name: 'Indústrias'
+    name: 'Indústrias',
   },
   {
     id: 21,
     total_estimated_impact: 0,
-    name: 'Oficina de automóveis'
+    name: 'Oficina de automóveis',
   },
   {
     id: 12,
     total_estimated_impact: 0,
-    name: 'Parques'
+    name: 'Parques',
   },
   {
     id: 18,
     total_estimated_impact: 0,
-    name: 'Pet Shops'
+    name: 'Pet Shops',
   },
   {
     id: 17,
     total_estimated_impact: 0,
-    name: 'Postos de Gasolina'
+    name: 'Postos de Gasolina',
   },
   {
     id: 13,
     total_estimated_impact: 0,
-    name: 'Praias'
+    name: 'Praias',
   },
   {
     id: 8,
     total_estimated_impact: 0,
-    name: 'Restaurantes & Lanchonetes'
+    name: 'Restaurantes & Lanchonetes',
   },
   {
     id: 6,
     total_estimated_impact: 0,
-    name: 'Rodovias'
+    name: 'Rodovias',
   },
   {
     id: 4,
     total_estimated_impact: 0,
-    name: 'Supermercados'
+    name: 'Supermercados',
   },
   {
     id: 19,
     total_estimated_impact: 0,
-    name: 'Transportadoras'
+    name: 'Transportadoras',
   },
   {
     id: 10,
     total_estimated_impact: 0,
-    name: 'Universidades'
-  }
+    name: 'Universidades',
+  },
 ];

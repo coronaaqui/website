@@ -6,22 +6,22 @@ const styles = ({ theme }) => css`
   ${theme.paddings.containerPaddingTop}
   ${theme.paddings.containerPadding}
  
-  .events-content{
+  .events-content {
     display: block;
     ${theme.container}
   }
   .events-overview__container {
-    display:grid;
+    display: grid;
     margin-top: 80px;
-    gap:15px;
+    gap: 15px;
     @media only screen and ${theme.device.tablet} {
-      grid-template-columns: repeat(2,1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   .events-overview__item {
     margin: 0 0 20px;
-    
+
     .ant-timeline {
       margin: 0;
       @media only screen and ${theme.device.mobileL} {
@@ -44,15 +44,15 @@ const styles = ({ theme }) => css`
 
   .events-overview__item--description {
     figure {
-      display:grid;
-      gap:15px;
+      display: grid;
+      gap: 15px;
       text-align: center;
       @media only screen and ${theme.device.mobileL} {
-        grid-template-columns:80px auto;
+        grid-template-columns: 80px auto;
         text-align: left;
       }
-      picture{
-        align-self:flex-start;
+      picture {
+        align-self: flex-start;
         img {
           width: 100%;
           max-width: 120px;
@@ -65,7 +65,7 @@ const styles = ({ theme }) => css`
           font-weight: 400;
           margin-bottom: 10px;
         }
-    
+
         ${Text} {
           overflow-wrap: normal;
           text-align: center;
@@ -77,8 +77,7 @@ const styles = ({ theme }) => css`
         }
       }
     }
-
   }
 `;
 
-export const eventsOverviewWithStyle = component => styled(component)(styles);
+export const eventsOverviewWithStyle = (component) => styled(component)(styles);

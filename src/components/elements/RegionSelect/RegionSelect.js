@@ -7,9 +7,7 @@ import Flag from '../Flag/Flag';
 const { Option, OptGroup } = Select;
 
 function cleanStr(str) {
-  return str !== null && typeof str === 'string'
-    ? str.toLowerCase().replace(' ', '')
-    : str;
+  return str !== null && typeof str === 'string' ? str.toLowerCase().replace(' ', '') : str;
 }
 
 function generateSearchTerms(item) {
@@ -21,7 +19,7 @@ function generateSearchTerms(item) {
 const RegionSelect = ({ className, defaultValue, onSelect }) => {
   const [query, setQuery] = useState(null);
 
-  const handleSearch = q => {
+  const handleSearch = (q) => {
     setQuery(q);
   };
 
@@ -35,9 +33,9 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
         onSearch={handleSearch}
         showSearch
       >
-        {Object.keys(regionsByRegion).map(region => (
+        {Object.keys(regionsByRegion).map((region) => (
           <OptGroup key={region} label={region}>
-            {regionsByRegion[region].map(region => (
+            {regionsByRegion[region].map((region) => (
               <Option key={JSON.stringify(region)} value={region.name}>
                 <Flag region={region.initial} />
                 {region.name}

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const selectHeight = `53px !important`;
-export const regionSelectWithStyle = component =>
+export const regionSelectWithStyle = (component) =>
   styled(component)(
     ({ theme }) => css`
       .ant-select {

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const overallIndicatorWithStyle = component =>
+export const overallIndicatorWithStyle = (component) =>
   styled(component)(
     ({ type = 'success', theme }) => css`
       /* display: flex;
@@ -10,9 +10,9 @@ export const overallIndicatorWithStyle = component =>
       align-items: center;
       /* padding: 0 0 0 22px; */
       padding: 15px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       ${theme.shadows.default}
       text-align: center;
     `

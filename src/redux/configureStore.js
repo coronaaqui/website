@@ -11,7 +11,7 @@ const loggerMiddleware = createLogger();
 
 const rootReducer = combineReducers({
   eventsReducer,
-  requestsReducer
+  requestsReducer,
 });
 
 const devToolsShouldLoad =
@@ -22,7 +22,7 @@ const devToolsShouldLoad =
 export function createApplicationStore(reducers, middleware, initialData = {}) {
   const createStoreWithMiddleware = compose(
     applyMiddleware(...middleware),
-    devToolsShouldLoad ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+    devToolsShouldLoad ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
   )(createStore);
 
   const store = createStoreWithMiddleware(reducers, initialData);
@@ -31,7 +31,11 @@ export function createApplicationStore(reducers, middleware, initialData = {}) {
 }
 
 export function configureStore() {
-  const middlewares = [thunkMiddleware, filtersMiddleware, apiMiddleware()/* , loggerMiddleware */];
+  const middlewares = [
+    thunkMiddleware,
+    filtersMiddleware,
+    apiMiddleware() /* , loggerMiddleware */,
+  ];
   const store = createApplicationStore(rootReducer, middlewares, {}); // We can pass initial data to be laoded into the region here
 
   return store;

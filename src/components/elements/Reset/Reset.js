@@ -325,5 +325,5 @@ export const Reset = () => {
         padding: 0.2em 0;
       }
     `}</style>
-  )
-}
+  );
+};

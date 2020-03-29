@@ -12,7 +12,7 @@ import {
   loadEvents,
   getSectors,
   getEvents,
-  resetState
+  resetState,
 } from '../src/redux/services/events';
 import { HeadTags } from '../src/components/elements/HeadTags';
 
@@ -56,9 +56,7 @@ const Home = () => {
       <Reset />
       <Head>
         <HeadTags />
-        <title>
-          Corona Brasil - Saiba o que está funcionando em sua cidade
-        </title>
+        <title>Corona Brasil - Saiba o que está funcionando em sua cidade</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
