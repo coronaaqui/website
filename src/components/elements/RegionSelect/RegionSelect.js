@@ -26,7 +26,9 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
   };
 
   const getOptionValue = region => {
-    const normalizedName = region.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const normalizedName = region.name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
     return [region.initial, region.name, normalizedName].join(' ');
   };
 
@@ -36,14 +38,17 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
         placeholder='Selecione um estado'
         className={className}
         onSelect={onSelect}
-        defaultValue={defaultValue}
+        defaultValue={getOptionValue(defaultValue)}
         onSearch={handleSearch}
         showSearch
       >
         {Object.keys(regionsByRegion).map(region => (
           <OptGroup key={region} label={region}>
             {regionsByRegion[region].map(region => (
-              <Option key={JSON.stringify(region)} value={getOptionValue(region)}>
+              <Option
+                key={JSON.stringify(region)}
+                value={getOptionValue(region)}
+              >
                 <Flag region={region.initial} />
                 {region.name}
               </Option>

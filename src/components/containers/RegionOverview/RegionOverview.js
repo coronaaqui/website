@@ -1,15 +1,8 @@
 import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import Link from 'next/link';
-import { MapSvg } from '../../../resources/map';
-import { popularRegions } from '../../../resources/regions';
-import Flag from '../../elements/Flag/Flag';
 import { Indicator } from '../../elements/Indicator';
-import { OverallIndicator } from '../../elements/Indicator/index';
 import { RegionSelect } from '../../elements/RegionSelect';
-import { Text, Title } from '../../elements/Typography';
-import { Dot } from '../../elements/Typography/Typography';
 import { regionOverviewWithStyle } from './RegionOverview.styles';
 import { useRegion } from '../../../hooks/regions';
 import { toRegion } from '../../../helpers/router';
@@ -41,7 +34,6 @@ const RegionOverview = ({ className }) => {
     fetchCases(currRegion?.initial);
   }, [currRegion]);
 
-
   return (
     <section className={'region-overview ' + className}>
       <div className='container'>
@@ -52,7 +44,7 @@ const RegionOverview = ({ className }) => {
 
           <RegionSelect
             onSelect={handleRegionSelect}
-            defaultValue={currRegion?.name}
+            defaultValue={currRegion}
           />
         </div>
       </div>
