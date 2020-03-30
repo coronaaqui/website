@@ -107,7 +107,7 @@ const HeadTags = ({ region }) => {
       <meta
         name='title'
         content={`Corona Brasil ${
-          region ? `- ${region}` : ''
+          region ? `- ${region.name}` : ''
         }: Saiba o que está funcionando em sua cidade e estado`}
       />
       <meta
@@ -120,7 +120,7 @@ const HeadTags = ({ region }) => {
       <meta
         property='og:title'
         content={`Corona Brasil ${
-          region ? `- ${region}` : ''
+          region ? `- ${region.name}` : ''
         }: Saiba o que está funcionando em sua cidade`}
       />
       <meta
