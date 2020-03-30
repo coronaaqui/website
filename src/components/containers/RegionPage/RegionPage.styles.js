@@ -29,6 +29,14 @@ const style = ({ theme }) => css`
   .description {
     padding-top: 50px;
     padding-bottom: 50px;
+
+    .title-container {
+      display: flex;
+
+      .social-sharing {
+        margin-left: 24px;
+      }
+    }
   }
 
   .events {

@@ -35,11 +35,19 @@ import { RegionProvider } from '../../src/hooks/regions';
 import { regions } from '../../src/resources/regions';
 import { HeadTags } from '../../src/components/elements/HeadTags';
 import { EVENTS_FORM } from '../../src/resources/links';
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga';
+import { SocialSharing } from '../../src/components/elements/SocialSharing';
 
 function normalizeSearch(str) {
   return str.toLowerCase().trim();
 }
+
+const sharing = {
+  whatsapp: region => () => {
+    const url = `${document.location.href}`;
+    return `Acesse ${url} e confira o que está funcionando no seu estado (${region}), até quando e por quê.`;
+  }
+};
 
 export const Estado = regionWithStyle(({ uf, className }) => {
   const dispatch = useDispatch();
@@ -60,8 +68,8 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   };
 
   useEffect(() => {
-    ReactGA.initialize('UA-162087851-1')
-    ReactGA.pageview(document.location.pathname)
+    ReactGA.initialize('UA-162087851-1');
+    ReactGA.pageview(document.location.pathname);
 
     dispatch(loadRegions(uf));
     dispatch(
@@ -119,24 +127,35 @@ export const Estado = regionWithStyle(({ uf, className }) => {
     <div className={'estado-page ' + className}>
       <Reset />
       <Head>
-        <HeadTags />
-        <title>Corona Brasil - {currRegion?.name}</title>
+        <HeadTags region={currRegion} />
+        <title>
+          Corona Brasil - {currRegion?.name} - Saiba o que está funcionando em
+          sua cidade e estado
+        </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <RegionProvider region={currRegion}>
         <Header />
         <div className='alert'>
-        Você tem alguma informação sobre sua cidade/estado? <a href={EVENTS_FORM} target='__blank'>Ajude no combate à pandemia clicando aqui</a>!
+          Você tem alguma informação sobre sua cidade/estado?{' '}
+          <a href={EVENTS_FORM} target='__blank'>
+            Ajude no combate à pandemia clicando aqui
+          </a>
+          !
         </div>
 
         <RegionOverview />
 
         <article className='description'>
-          <Title.h1>
-            Acontecimentos - {currRegion?.name}
-            <Dot type='dark' />
-          </Title.h1>
+          <div className='title-container'>
+            <Title.h1>
+              Acontecimentos - {currRegion?.name}
+              <Dot type='dark' />
+            </Title.h1>
+            <SocialSharing message={sharing.whatsapp(currRegion?.name)} />
+          </div>
+
           <div className='contact'>
             {regionInfo?.phone && (
               <div className='phone'>

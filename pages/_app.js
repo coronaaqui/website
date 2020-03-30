@@ -3,6 +3,7 @@ import withRedux from 'next-redux-wrapper';
 import { Theme } from '../theme';
 import { Provider } from 'react-redux';
 import { configureStore } from '../src/redux/configureStore';
+
 import 'antd/lib/select/style/index.css';
 import 'antd/lib/style/index.css';
 import 'antd/lib/timeline/style/index.css';
@@ -13,6 +14,10 @@ import 'antd/lib/input/style/index.css';
 import 'antd/lib/spin/style/index.css';
 import 'antd/lib/empty/style/index.css';
 import 'antd/lib/popover/style/index.css';
+import 'antd/lib/menu/style/index.css';
+import 'antd/lib/dropdown/style/index.css';
+import 'antd/lib/tooltip/style/index.css';
+import 'antd/lib/button/style/index.css';
 
 const App = ({ Component, pageProps, store }) => {
   return (
