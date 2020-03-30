@@ -25,6 +25,11 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
     setQuery(q);
   };
 
+  const getOptionValue = region => {
+    const normalizedName = region.name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return [region.initial, region.name, normalizedName].join(' ');
+  };
+
   return (
     <>
       <Select
@@ -38,7 +43,7 @@ const RegionSelect = ({ className, defaultValue, onSelect }) => {
         {Object.keys(regionsByRegion).map(region => (
           <OptGroup key={region} label={region}>
             {regionsByRegion[region].map(region => (
-              <Option key={JSON.stringify(region)} value={region.name}>
+              <Option key={JSON.stringify(region)} value={getOptionValue(region)}>
                 <Flag region={region.initial} />
                 {region.name}
               </Option>
