@@ -8,7 +8,7 @@ import {
 
 const SocialSharing = ({ message }) => {
   const handleWpSharing = () => {
-    const url = `whatsapp://send?text="${message()}"`;
+    const url = `whatsapp://send?text=${encodeURIComponent(message())}`;
     window.open(url, '_blank');
   };
 

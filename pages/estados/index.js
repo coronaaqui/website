@@ -44,8 +44,8 @@ function normalizeSearch(str) {
 
 const sharing = {
   whatsapp: region => () => {
-    const url = `${document.location.href}`;
-    return `Acesse ${url} e confira o que está funcionando no seu estado (${region}), até quando e por quê.`;
+    const url = `${document.location.href}/?utm_source=whatsapp&utm_medium=social&utm_campaign=sharing`;
+    return `Acesse o Corona Brasil e confira o que está funcionando em seu estado (${region}), até quando e por quê. \n\n ${url}`;
   }
 };
 
