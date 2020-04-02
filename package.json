@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.2.0",
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^1.10.7",
+    "dotenv-load": "^2.0.0",
+    "next-env": "^1.1.1"
   }
 }

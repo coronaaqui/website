@@ -15,6 +15,7 @@ import {
   resetState
 } from '../src/redux/services/events';
 import { HeadTags } from '../src/components/elements/HeadTags';
+import ReactGA from 'react-ga';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ const Home = () => {
   }
 
   useEffect(() => {
+    ReactGA.initialize(process.env.NEXT_PUBLIC_GA_KEY);
+    ReactGA.pageview(document.location.pathname);
+
     fetchCases();
     dispatch(loadSectors({ ordering: 'total_estimated_impact', limit: 4 }));
 

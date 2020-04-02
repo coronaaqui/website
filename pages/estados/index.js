@@ -68,7 +68,7 @@ export const Estado = regionWithStyle(({ uf, className }) => {
   };
 
   useEffect(() => {
-    ReactGA.initialize('UA-162087851-1');
+    ReactGA.initialize(process.env.NEXT_PUBLIC_GA_KEY);
     ReactGA.pageview(document.location.pathname);
 
     dispatch(loadRegions(uf));
