@@ -6,4 +6,4 @@ set -xe
 git pull origin master -X theirs
 yarn
 yarn build
-pm2 reload website
+pm2 restart website
