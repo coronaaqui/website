@@ -33,6 +33,13 @@ export const footerWithStyle = component =>
           @media only screen and ${theme.device.laptop} {
             grid-template-columns: repeat(4, 1fr);
           }
+          .social {
+            padding: 15px 0 0 0;
+            margin: 0 -5px;
+            a {
+              padding: 5px;
+            }
+          }
         }
         .copyright{
           color:${theme.colors.grey.scales[0]};
