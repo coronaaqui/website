@@ -2,8 +2,9 @@ import React from 'react';
 import { Button } from '../Button';
 import { Logo } from '../Logo';
 import { Text, Title } from '../Typography';
+import { GithubOutlined } from '@ant-design/icons';
 import { footerWithStyle } from './Footer.styles';
-import { COLABORADORES_FORM } from '../../../resources/links';
+import { COLABORADORES_FORM, GITHUB_LINK } from '../../../resources/links';
 
 const Footer = ({ className }) => {
   return (
@@ -19,6 +20,11 @@ const Footer = ({ className }) => {
               trabalhar, prestar e solicitar serviços, fazer compras e realizar
               atividades cotidianas.
             </Text>
+            <div className='social'>
+              <a target='__blank' href={GITHUB_LINK}>
+                <GithubOutlined style={{ color: 'white' }} />
+              </a>
+            </div>
           </div>
           <div className='col'>
             {/* <Title.h2>Lorem ipsum dolor sit amet,</Title.h2>

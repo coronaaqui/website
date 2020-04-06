@@ -28,6 +28,12 @@ export const headerWithStyle = component =>
         flex-direction: row-reverse;
         order: 2;
         width: calc(100% - 150px);
+
+        .social {
+          padding: 10px;
+          order: 3;
+          margin-right: 25px;    
+        }
       }
     `
   );
