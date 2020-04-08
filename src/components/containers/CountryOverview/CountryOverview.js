@@ -68,11 +68,12 @@ const CountryOverview = ({ className, sectors, cases }) => {
             de isolamento e quarentena.
           </Text>
         </article>
-        {sectors.map(item => (
+        {sectors.map((item, indicatorKey) => (
           <Indicator
             icon={<SectorIcon sector={item.id} />}
             label={`${item.name}`}
             value={item?.total_estimated_impact}
+            key={indicatorKey}
           />
         ))}
       </div>
