@@ -21,14 +21,14 @@ const EventsOverview = ({ className, events, sectors }) => {
         </Text>
 
         <section className='events-overview__container'>
-          {sectors.map(item => (
-            <Event scroll={false} sector={item.id} title={item.name}>
+          {sectors.map((item, eventKey) => (
+            <Event scroll={false} sector={item.id} title={item.name} key={eventKey}>
               {events?.[item.id] &&
                 events?.[item.id].results
                   .filter((_, idx) => idx < 2)
-                  .map(item => (
+                  .map((item, eventItemKey) => (
                     <Event.Item
-                    key={JSON.stringify(item)}
+                    key={eventItemKey}
                       event={item}
                       city={item?.city?.name}
                       status={item.status_type}
